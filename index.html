@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -565,6 +564,32 @@
             font-size: 0.9rem;
         }
         
+        /* Floating WhatsApp Button */
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .float-whatsapp:hover {
+            background: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
         /* Responsive Styles */
         @media (max-width: 992px) {
             h1 {
@@ -621,6 +646,14 @@
                 height: 40px;
                 font-size: 1rem;
             }
+            
+            .float-whatsapp {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -656,6 +689,11 @@
     </style>
 </head>
 <body>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/917029615248" class="float-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Dark Mode Toggle -->
     <button class="dark-mode-toggle" id="darkModeToggle">
         <i class="fas fa-moon"></i>
@@ -665,7 +703,7 @@
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="https://drive.google.com/uc?export=view&id=1y_JWeu11N-mINcGe7bhJK_j8yFw66FkA" alt="Your SMM Expert Logo">
+                <img src="https://i.ibb.co/gLD98mbG/logo.png" alt="Your SMM Expert Logo">
                 <h3>Your SMM Expert</h3>
             </a>
             <div class="auth-buttons">
@@ -1005,7 +1043,7 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Ready to Boost Your Social Media?</h2>
+             <h2>Ready to Boost Your Social Media?</h2>
             <p>Join thousands of satisfied customers growing their online presence with our premium services.</p>
             <a href="#packages" class="btn">View All Packages</a>
         </div>
