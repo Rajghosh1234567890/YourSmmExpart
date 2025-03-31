@@ -39,6 +39,7 @@
             background-color: var(--dark-gray);
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         @keyframes slideIn {
@@ -203,7 +204,7 @@
         .hero {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 180px 0 100px;
+            padding: 150px 0 100px;
             text-align: center;
             background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
             background-size: cover;
@@ -254,6 +255,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
         
         .tab-btn {
@@ -290,7 +292,7 @@
         
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
@@ -564,6 +566,42 @@
             font-size: 0.9rem;
         }
         
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+        
+        /* Snow Effect */
+        .snowflake {
+            position: fixed;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.8;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 992px) {
             h1 {
@@ -576,6 +614,10 @@
             
             .packages-grid {
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
             }
         }
         
@@ -594,7 +636,7 @@
             }
             
             .hero {
-                padding: 150px 0 80px;
+                padding: 120px 0 60px;
             }
             
             .hero h1 {
@@ -619,6 +661,14 @@
                 width: 40px;
                 height: 40px;
                 font-size: 1rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
             }
         }
         
@@ -651,6 +701,18 @@
                 max-width: 350px;
                 margin: 0 auto;
             }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .testimonial-card {
+                padding: 20px 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -660,11 +722,16 @@
         <i class="fas fa-moon"></i>
     </button>
 
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/917029615248" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <!-- Header -->
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
-                <img src="https://drive.google.com/uc?export=view&id=1y_JWeu11N-mINcGe7bhJK_j8yFw66FkA" alt="Your SMM Expert Logo">
+                <img src="https://i.ibb.co/0jQ7J3L/smm-logo.png" alt="Your SMM Expert Logo">
                 <h3>Your SMM Expert</h3>
             </a>
             <div class="auth-buttons">
@@ -991,11 +1058,57 @@
                     </div>
                     <div class="testimonial-author">- Priya M., Entrepreneur</div>
                 </div>
-                <div class="testimonial-card">
+                <div class="
+testimonial-card">
                     <div class="testimonial-content">
-                        <p>The customer support team is responsive and helpful. They resolved my issue within minutes when I had a question about my order. Highly recommended for anyone serious about growing their social media!</p>
+                        <p>The brand promotion bonus was a game-changer for my business! Not only did I get the promised engagement, but the brand collaboration helped me reach new audiences. Highly recommended!</p>
                     </div>
-                    <div class="testimonial-author">- Arjun S., Influencer</div>
+                    <div class="testimonial-author">- Arjun S., Digital Marketer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <h3>How quickly will I see results?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our automated system starts delivering results within 24-48 hours of purchase. For larger packages (1M+), delivery may take 3-5 days.</p>
+                    </div>
+                </div>
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <h3>Is this service safe for my account?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We use organic growth methods that comply with all platform guidelines. Your account security is our top priority.</p>
+                    </div>
+                </div>
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <h3>What if I don't get the full delivery?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 100% refill guarantee. If any metrics drop within 30 days, simply contact our support for a free top-up.</p>
+                    </div>
+                </div>
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <h3>Can I target specific countries or demographics?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Add a note during checkout with your requirements (e.g., "US-only followers" or "Women aged 25-35").</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1004,147 +1117,31 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Ready to Boost Your Social Media?</h2>
-            <p>Join thousands of satisfied customers growing their online presence with our premium services.</p>
-            <a href="#packages" class="btn">View All Packages</a>
-        </div>
-    </section>
-
-    <!-- Social Media Section -->
-    <section class="social-media">
-        <div class="container">
-            <h2>Connect With Us</h2>
-            <p>Follow us on social media for updates, tips, and special offers.</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/subhankor_65?igsh=aGFtdzV6NjB3ZTc0" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://youtube.com/@yoursmmexpart?si=WQP7C6o9nwU81DJu" target="_blank"><i class="fab fa-youtube"></i></a>
-                <a href="https://wa.me/917029615248" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
+            <h2>Ready to Boost Your Social Presence?</h2>
+            <p>Join 10,000+ satisfied clients who trust us for their social media growth.</p>
+            <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Get Started Now</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h4>Your SMM Expert</h4>
-                    <p>Providing premium SMM services since 2020. We help businesses and individuals grow their social media presence effectively with our high-quality services.</p>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/subhankor_65?igsh=aGFtdzV6NjB3ZTc0" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://youtube.com/@yoursmmexpart?si=WQP7C6o9nwU81DJu" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://wa.me/917029615248" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <h3>Your SMM Expert</h3>
+                    <p>The #1 SMM Panel for Organic Growth</p>
                 </div>
-                <div class="footer-column">
-                    <h4>Services</h4>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#packages">YouTube Services</a></li>
-                        <li><a href="#packages">Instagram Services</a></li>
-                        <li><a href="#">Facebook Services</a></li>
-                        <li><a href="#">Twitter Services</a></li>
-                        <li><a href="#">TikTok Services</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#packages">Packages</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h4>Company</h4>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Support</h4>
-                    <ul>
-                        <li><a href="https://wa.me/917029615248">WhatsApp Support</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Refund Policy</a></li>
-                        <li><a href="#">Delivery Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 Your SMM Expert. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Dark Mode Toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-        let darkMode = localStorage.getItem('darkMode');
-        
-        // Check if dark mode is enabled
-        if (darkMode === 'enabled') {
-            body.setAttribute('data-theme', 'dark');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-        
-        // Toggle dark mode
-        darkModeToggle.addEventListener('click', () => {
-            darkMode = localStorage.getItem('darkMode');
-            
-            if (darkMode !== 'enabled') {
-                body.setAttribute('data-theme', 'dark');
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                body.removeAttribute('data-theme');
-                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-                localStorage.setItem('darkMode', null);
-            }
-        });
-        
-        // Tab functionality
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const youtubePackages = document.querySelector('.youtube-packages');
-        const instagramPackages = document.querySelector('.instagram-packages');
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                tabBtns.forEach(b => b.classList.remove('active'));
-                
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                // Show corresponding packages
-                if (btn.dataset.tab === 'youtube') {
-                    youtubePackages.style.display = 'block';
-                    instagramPackages.style.display = 'none';
-                } else {
-                    youtubePackages.style.display = 'none';
-                    instagramPackages.style.display = 'block';
-                }
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Sticky tabs
-        window.addEventListener('scroll', () => {
-            const tabs = document.querySelector('.services-tabs');
-            const header = document.querySelector('header');
-            const headerHeight = header.offsetHeight;
-            
-            if (window.scrollY > headerHeight) {
-                tabs.style.top = '0';
-            } else {
-                tabs.style.top = headerHeight + 'px';
-            }
-        });
-    </script>
-</body>
-</html>
+                        <li><i class="fas fa-envelope"></i> support@yoursmmexpert.com</li>
+                        <li><i class="fas fa-phone"></i> +91 70296 15248</li>
