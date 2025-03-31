@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your SMM Expert - Premium Social Media Marketing Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #1a1a1a;
+            --text: #ffffff;
+            --gray: #7f8c8d;
+            --dark-gray: #2c3e50;
+            --premium-gray: #34495e;
+        }
+        
+        [data-theme="dark"] {
+            --primary: #1a1a1a;
+            --secondary: #2c3e50;
+            --dark-gray: #121212;
+            --premium-gray: #1e1e1e;
+            --text: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--dark-gray);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #128C7E;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: slideIn 1s ease-out;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--primary);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+        
+        .dark-mode-toggle:hover {
+            animation: pulse 1.5s infinite;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        .logo h3 {
+            font-size: 1.8rem;
+            color: var(--text);
+            margin-bottom: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .auth-buttons a {
+            margin-left: 15px;
+            font-size: 0.9rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Services Tabs */
+        .services-tabs {
+            background-color: var(--secondary);
+            padding: 20px 0;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .tab-btn {
+            background: transparent;
+            color: var(--text);
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+        
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        
+        /* Packages Section */
+        .packages {
+            background-color: var(--dark-gray);
+            padding: 60px 0;
+        }
+        
+        .package-category {
+            margin-bottom: 80px;
+        }
+        
+        .package-category h2 {
+            color: var(--text);
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .package-card {
+            background: var(--premium-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        .package-header {
+            background: var(--primary);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .package-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .package-body {
+            padding: 30px;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .package-features li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .package-price {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 1.2rem;
+        }
+        
+        .discounted-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 5px 0;
+        }
+        
+        .package-cta {
+            text-align: center;
+        }
+        
+        /* Features Section */
+        .features {
+            background-color: var(--secondary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: var(--premium-gray);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--dark-gray);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: var(--premium-gray);
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            position: relative;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .cta .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta h2::after {
+            background: white;
+        }
+        
+        /* Social Media Section */
+        .social-media {
+            background-color: var(--secondary);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h4 {
+            color: var(--text);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .packages-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .auth-buttons a {
+                margin: 0 10px;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .tabs-container {
+                flex-wrap: wrap;
+            }
+            
+            .services-tabs {
+                top: 140px;
+            }
+            
+            .dark-mode-toggle {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .auth-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .auth-buttons a {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .package-card {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="https://drive.google.com/uc?export=view&id=1y_JWeu11N-mINcGe7bhJK_j8yFw66FkA" alt="Your SMM Expert Logo">
+                <h3>Your SMM Expert</h3>
+            </a>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Login</a>
+                <a href="#" class="btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Premium SMM Services</h1>
+            <p>Grow your social media presence with our high-quality, non-drop services. Get real engagement and boost your online influence with our premium packages.</p>
+            <a href="#packages" class="btn">View Packages</a>
+        </div>
+    </section>
+
+    <!-- Services Tabs -->
+    <section class="services-tabs" id="services-tabs">
+        <div class="container">
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="youtube">YouTube Promotion</button>
+                <button class="tab-btn" data-tab="instagram">Instagram Promotion</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="packages" id="packages">
+        <div class="container">
+            <!-- YouTube Packages -->
+            <div class="package-category youtube-packages">
+                <h2>YouTube Promotion Packages</h2>
+                <div class="packages-grid">
+                    <!-- Package 1 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Beginners Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>100 Subscribers Non Drop</li>
+                                <li>100 Search Views</li>
+                                <li>500 Organic Likes</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹299</span>
+                                <div class="discounted-price">₹99</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Package 2 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>1K Subscribers Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>1K Real Subscribers</li>
+                                <li>2K Searchable Views (Suggested)</li>
+                                <li>Full SEO in Your Video</li>
+                                <li>5K Likes</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹1399</span>
+                                <div class="discounted-price">₹999</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Package 3 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>5K Subscribers Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>5K Organic Subscribers</li>
+                                <li>2K Organic SEO Views</li>
+                                <li>7K Real Users Like</li>
+                                <li>100 Comments Worldwide</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹3199</span>
+                                <div class="discounted-price">₹1999</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Package 4 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>10K Subscribers Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>10K Subscribers</li>
+                                <li>10K Views</li>
+                                <li>1K Comments</li>
+                                <li>10K Likes</li>
+                                <li>15 Search Keyword Bonus</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹7999</span>
+                                <div class="discounted-price">₹6999</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Package 5 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Monetization Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>2K Subscribers + 1K Bonus</li>
+                                <li>4K Hours Watch Time</li>
+                                <li>Complete in Just 7 Days</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹17999</span>
+                                <div class="discounted-price">₹14999</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Instagram Packages -->
+            <div class="package-category instagram-packages" style="display: none;">
+                <h2>Instagram Promotion Packages</h2>
+                <div class="packages-grid">
+                    <!-- Package 1 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Beginners Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>1K Instagram Organic Followers</li>
+                                <li>10K Views For One Video</li>
+                                <li>1K Likes</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹299</span>
+                                <div class="discounted-price">₹199</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Package 2 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Intermediate Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>5K Instagram Organic Followers</li>
+                                <li>10K Real Users Like</li>
+                                <li>50K+ Views in Last Video</li>
+                                <li>10K+ Impression in Your Page</li>
+                                <li>50 Comments (Bonus)</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹1299</span>
+                                <div class="discounted-price">₹1199</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Package 3 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Brand Building Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>10K Genuine Followers</li>
+                                <li>10K+ Real Users Like</li>
+                                <li>100K+ Real Active Users Views</li>
+                                <li>20K+ Impressions & Story Views</li>
+                                <li>500 Genuine Comments</li>
+                                <li>10 Viral Hashtag (Bonus)</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹7999</span>
+                                <div class="discounted-price">₹4999</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Package 4 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>Celebrity Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>50K+ Fully Indian Followers</li>
+                                <li>100K+ Organic Indian Like</li>
+                                <li>1M+ Real Views in Last 2 Videos</li>
+                                <li>500K+ Impression on Your Page</li>
+                                <li>2K+ Comments</li>
+                                <li>10K+ Instagram Save</li>
+                                <li>2K+ DM (Bonus)</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹22999</span>
+                                <div class="discounted-price">₹14999</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Package 5 -->
+                    <div class="package-card">
+                        <div class="package-header">
+                            <h3>100K Bullet Package</h3>
+                        </div>
+                        <div class="package-body">
+                            <ul class="package-features">
+                                <li>100K+ Bullet Speed Followers</li>
+                                <li>1M+ Likes</li>
+                                <li>10M+ Views</li>
+                                <li>1M+ Impression on Your Page</li>
+                                <li>10K+ Comments</li>
+                                <li>100K+ Saves</li>
+                                <li>2 Big Brand Promotion (Bonus)</li>
+                            </ul>
+                            <div class="package-price">
+                                <span class="original-price">₹32999</span>
+                                <div class="discounted-price">₹25000</div>
+                            </div>
+                            <div class="package-cta">
+                                <a href="https://wa.me/917029615248?text=I%20am%20interested%20in%20your%20service.%20How%20to%20buy%20please%20tell%20me." class="btn btn-whatsapp">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>We provide only high-quality, non-drop services with real engagement from active users.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Our automated systems ensure quick delivery times so you see results almost immediately.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>100% Safe</h3>
+                    <p>Your accounts are completely safe with us. We use organic methods that don't violate platform policies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is available round the clock to assist you with any queries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>I've tried many SMM panels but Your SMM Expert stands out. The quality of followers is exceptional and the delivery speed is impressive. My YouTube channel grew from 1K to 10K subscribers in just 2 weeks!</p>
+                    </div>
+                    <div class="testimonial-author">- Rajesh K., YouTuber</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>As a small business owner, I needed affordable yet effective social media growth. This panel delivered exactly what I needed. My Instagram engagement has tripled since I started using their services.</p>
+                    </div>
+                    <div class="testimonial-author">- Priya M., Entrepreneur</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>The customer support team is responsive and helpful. They resolved my issue within minutes when I had a question about my order. Highly recommended for anyone serious about growing their social media!</p>
+                    </div>
+                    <div class="testimonial-author">- Arjun S., Influencer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Boost Your Social Media?</h2>
+            <p>Join thousands of satisfied customers growing their online presence with our premium services.</p>
+            <a href="#packages" class="btn">View All Packages</a>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-media">
+        <div class="container">
+            <h2>Connect With Us</h2>
+            <p>Follow us on social media for updates, tips, and special offers.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/subhankor_65?igsh=aGFtdzV6NjB3ZTc0" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/@yoursmmexpart?si=WQP7C6o9nwU81DJu" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://wa.me/917029615248" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Your SMM Expert</h4>
+                    <p>Providing premium SMM services since 2020. We help businesses and individuals grow their social media presence effectively with our high-quality services.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/subhankor_65?igsh=aGFtdzV6NjB3ZTc0" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/@yoursmmexpart?si=WQP7C6o9nwU81DJu" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/917029615248" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#packages">YouTube Services</a></li>
+                        <li><a href="#packages">Instagram Services</a></li>
+                        <li><a href="#">Facebook Services</a></li>
+                        <li><a href="#">Twitter Services</a></li>
+                        <li><a href="#">TikTok Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="https://wa.me/917029615248">WhatsApp Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Delivery Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Your SMM Expert. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        let darkMode = localStorage.getItem('darkMode');
+        
+        // Check if dark mode is enabled
+        if (darkMode === 'enabled') {
+            body.setAttribute('data-theme', 'dark');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        // Toggle dark mode
+        darkModeToggle.addEventListener('click', () => {
+            darkMode = localStorage.getItem('darkMode');
+            
+            if (darkMode !== 'enabled') {
+                body.setAttribute('data-theme', 'dark');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                body.removeAttribute('data-theme');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('darkMode', null);
+            }
+        });
+        
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const youtubePackages = document.querySelector('.youtube-packages');
+        const instagramPackages = document.querySelector('.instagram-packages');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding packages
+                if (btn.dataset.tab === 'youtube') {
+                    youtubePackages.style.display = 'block';
+                    instagramPackages.style.display = 'none';
+                } else {
+                    youtubePackages.style.display = 'none';
+                    instagramPackages.style.display = 'block';
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Sticky tabs
+        window.addEventListener('scroll', () => {
+            const tabs = document.querySelector('.services-tabs');
+            const header = document.querySelector('header');
+            const headerHeight = header.offsetHeight;
+            
+            if (window.scrollY > headerHeight) {
+                tabs.style.top = '0';
+            } else {
+                tabs.style.top = headerHeight + 'px';
+            }
+        });
+    </script>
+</body>
+</html>
