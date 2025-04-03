@@ -37,7 +37,27 @@
             font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+               <!-- ✅ তুমি HTML-এর যেকোনো জায়গায় এই কোড Paste করো -->
+<button class="runAPI">API চালু করো</button>
+<p class="output"></p> <!-- এখানে API রেসপন্স দেখাবে -->
+
+<script>
+    document.addEventListener("click", function(event) {
+        if (event.target.classList.contains("runAPI")) {
+            fetch("https://jsonplaceholder.typicode.com/todos/1")
+                .then(response => response.json())
+                .then(data => {
+                    let outputElement = event.target.nextElementSibling;
+                    if (!outputElement || outputElement.tagName !== "P") {
+                        outputElement = document.createElement("p");
+                        event.target.parentNode.insertBefore(outputElement, event.target.nextSibling);
+                    }
+                    outputElement.innerText = "📢 API রেসপন্স: " + JSON.stringify(data);
+                })
+                .catch(error => console.error("ত্রুটি:", error));
+        }
+    });
+</script>  
         body {
             background-color: var(--dark-gray);
             color: var(--text);
