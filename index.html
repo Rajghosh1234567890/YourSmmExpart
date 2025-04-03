@@ -1182,6 +1182,27 @@
         });
     });
 </script>
+
+            <button class="runAPI">Run API</button>
+<p class="output"></p>
+
+<script>
+    document.addEventListener("click", function(event) {
+        if (event.target.classList.contains("runAPI")) {
+            fetch("https://jsonplaceholder.typicode.com/todos/1")
+                .then(response => response.json())
+                .then(data => {
+                    let outputElement = event.target.nextElementSibling;
+                    if (!outputElement || outputElement.tagName !== "P") {
+                        outputElement = document.createElement("p");
+                        event.target.parentNode.insertBefore(outputElement, event.target.nextSibling);
+                    }
+                    outputElement.innerText = "API Response: " + JSON.stringify(data);
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    });
+</script>
             <!-- Instagram Packages -->
             <div class="package-category instagram-packages" style="display: none;">
                 <h2>Instagram Promotion Packages💥</h2>
