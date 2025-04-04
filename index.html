@@ -1164,28 +1164,7 @@
                 </div>
             </div>
             <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.querySelectorAll(".runAPI").forEach(button => {
-            button.addEventListener("click", function() {
-                fetch("https://jsonplaceholder.typicode.com/todos/1")
-                    .then(response => response.json())
-                    .then(data => {
-                        let outputElement = this.nextElementSibling;
-                        if (!outputElement || outputElement.tagName !== "P") {
-                            outputElement = document.createElement("p");
-                            this.parentNode.insertBefore(outputElement, this.nextSibling);
-                        }
-                        outputElement.innerText = "📢 API রেসপন্স: " + JSON.stringify(data);
-                    })
-                    .catch(error => console.error("ত্রুটি:", error));
-            });
-        });
-    });
-</script>
-
-            <button class="runAPI">Run API</button>
-<p class="output"></p>
-
+   
 <script>
     document.addEventListener("click", function(event) {
         if (event.target.classList.contains("runAPI")) {
