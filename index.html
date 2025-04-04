@@ -1164,7 +1164,730 @@
                 </div>
             </div>
             <script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Create admin panel button
+    const adminBtn = document.createElement('div');
+    adminBtn.innerHTML = `
+        <style>
+            #adminPanelBtn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+                color: white;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 9999;
+                font-size: 24px;
+                transition: all 0.3s ease;
+            }
+            #adminPanelBtn:hover {
+                transform: scale(1.1);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            }
+            .admin-panel {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.8);
+                z-index: 10000;
+                overflow-y: auto;
+            }
+            .admin-container {
+                background-color: #f8f9fa;
+                min-height: 100vh;
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            }
+            .admin-header {
+                background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+                color: white;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .admin-header h2 {
+                margin: 0;
+                font-size: 1.5rem;
+            }
+            .close-admin {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            .admin-sidebar {
+                background-color: #343a40;
+                color: white;
+                width: 250px;
+                height: 100%;
+                position: fixed;
+                overflow-y: auto;
+            }
+            .admin-main {
+                margin-left: 250px;
+                padding: 20px;
+            }
+            .sidebar-menu {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .sidebar-menu li {
+                border-bottom: 1px solid #4b545c;
+            }
+            .sidebar-menu li a {
+                color: #d6d8db;
+                display: block;
+                padding: 12px 15px;
+                text-decoration: none;
+                transition: all 0.3s;
+            }
+            .sidebar-menu li a:hover {
+                background-color: #4b545c;
+                color: white;
+            }
+            .sidebar-menu li.active a {
+                background-color: #6e48aa;
+                color: white;
+            }
+            .login-container {
+                max-width: 400px;
+                margin: 100px auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            .form-group input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            .login-btn {
+                background: linear-gradient(135deg, #6e48aa 0%, #9d50bb 100%);
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 16px;
+            }
+            .dashboard-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+                margin-bottom: 30px;
+            }
+            .card {
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.05);
+                padding: 15px;
+            }
+            .card-header {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            .card-body {
+                font-size: 24px;
+                font-weight: bold;
+                color: #6e48aa;
+            }
+            .chart-container {
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.05);
+                padding: 15px;
+                margin-bottom: 20px;
+                height: 300px;
+            }
+            .table-responsive {
+                overflow-x: auto;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            th {
+                background-color: #f5f5f5;
+                font-weight: bold;
+            }
+            tr:hover {
+                background-color: #f9f9f9;
+            }
+            .badge {
+                display: inline-block;
+                padding: 3px 7px;
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 1;
+                color: white;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                border-radius: 10px;
+            }
+            .badge-success {
+                background-color: #28a745;
+            }
+            .badge-warning {
+                background-color: #ffc107;
+            }
+            .badge-danger {
+                background-color: #dc3545;
+            }
+            .badge-info {
+                background-color: #17a2b8;
+            }
+            .btn {
+                display: inline-block;
+                padding: 6px 12px;
+                margin-bottom: 0;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.42857143;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                cursor: pointer;
+                border: 1px solid transparent;
+                border-radius: 4px;
+                text-decoration: none;
+            }
+            .btn-primary {
+                color: #fff;
+                background-color: #6e48aa;
+                border-color: #6e48aa;
+            }
+            .btn-sm {
+                padding: 5px 10px;
+                font-size: 12px;
+                line-height: 1.5;
+                border-radius: 3px;
+            }
+            @media (max-width: 768px) {
+                .admin-sidebar {
+                    width: 100%;
+                    position: relative;
+                    height: auto;
+                }
+                .admin-main {
+                    margin-left: 0;
+                }
+                .dashboard-cards {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+        <div id="adminPanelBtn">⚙️</div>
+        <div class="admin-panel">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h2>Admin Dashboard</h2>
+                    <button class="close-admin">×</button>
+                </div>
+                <div class="admin-content" id="adminContent">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(adminBtn);
 
+    // Admin panel state
+    let isAdminLoggedIn = false;
+    const adminPanel = document.querySelector('.admin-panel');
+    const adminContent = document.getElementById('adminContent');
+    const adminPanelBtn = document.getElementById('adminPanelBtn');
+    const closeAdminBtn = document.querySelector('.close-admin');
+
+    // Show login form
+    function showLoginForm() {
+        adminContent.innerHTML = `
+            <div class="login-container">
+                <h2 style="text-align: center; margin-bottom: 20px;">Admin Login</h2>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminEmail">Email</label>
+                        <input type="email" id="adminEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+            </div>
+        `;
+
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            if (email === 'Subho999@gmail.com' && password === '999') {
+                isAdminLoggedIn = true;
+                loadDashboard();
+            } else {
+                alert('Invalid credentials!');
+            }
+        });
+    }
+
+    // Load dashboard
+    function loadDashboard() {
+        adminContent.innerHTML = `
+            <div class="admin-sidebar">
+                <ul class="sidebar-menu">
+                    <li class="active"><a href="#" data-page="dashboard">Dashboard</a></li>
+                    <li><a href="#" data-page="users">User Management</a></li>
+                    <li><a href="#" data-page="orders">Order Management</a></li>
+                    <li><a href="#" data-page="services">Services & Category</a></li>
+                    <li><a href="#" data-page="api">API System</a></li>
+                    <li><a href="#" data-page="payments">Payment Management</a></li>
+                    <li><a href="#" data-page="admins">Admin Roles</a></li>
+                    <li><a href="#" data-page="resellers">Reseller & API</a></li>
+                    <li><a href="#" data-page="support">Support System</a></li>
+                    <li><a href="#" data-page="notifications">Notifications</a></li>
+                    <li><a href="#" data-page="analytics">Analytics & Reports</a></li>
+                    <li><a href="#" data-page="security">Security</a></li>
+                    <li><a href="#" data-page="settings">CMS & Settings</a></li>
+                    <li><a href="#" data-page="extras">Extra Add-ons</a></li>
+                    <li><a href="#" id="logoutBtn">Logout</a></li>
+                </ul>
+            </div>
+            <div class="admin-main" id="adminMainContent">
+                <!-- Main content will be loaded here -->
+            </div>
+        `;
+
+        // Load dashboard content by default
+        loadPageContent('dashboard');
+
+        // Add event listeners to sidebar links
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            if (link.dataset.page) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector('.sidebar-menu li.active').classList.remove('active');
+                    this.parentElement.classList.add('active');
+                    loadPageContent(this.dataset.page);
+                });
+            }
+        });
+
+        // Logout button
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            isAdminLoggedIn = false;
+            showLoginForm();
+        });
+    }
+
+    // Load page content
+    function loadPageContent(page) {
+        const mainContent = document.getElementById('adminMainContent');
+        
+        switch(page) {
+            case 'dashboard':
+                mainContent.innerHTML = `
+                    <h2>Dashboard Overview</h2>
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <div class="card-header">Total Users</div>
+                            <div class="card-body">1,248</div>
+                            <div class="card-footer">45 active today</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Total Orders</div>
+                            <div class="card-body">3,784</div>
+                            <div class="card-footer">124 today | 892 this week</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Total Revenue</div>
+                            <div class="card-body">$24,856.50</div>
+                            <div class="card-footer">$1,245 today</div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Wallet Balance</div>
+                            <div class="card-body">$8,542.00</div>
+                            <div class="card-footer">$2,450 in pending</div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>Top 5 Best-Selling Services</h3>
+                        <div id="servicesChart" style="height: 250px;"></div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="chart-container" style="width: 48%; float: left;">
+                            <h3>Live Orders Status</h3>
+                            <div id="ordersPieChart" style="height: 250px;"></div>
+                        </div>
+                        <div class="chart-container" style="width: 48%; float: right;">
+                            <h3>Revenue This Month</h3>
+                            <div id="revenueChart" style="height: 250px;"></div>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </div>
+                    
+                    <div class="card" style="margin-top: 20px;">
+                        <div class="card-header">Admin Notifications</div>
+                        <div class="card-body">
+                            <ul>
+                                <li>API 2 has low balance ($12.50 remaining)</li>
+                                <li>3 pending payments need approval</li>
+                                <li>2 support tickets waiting for response</li>
+                                <li>System backup scheduled for tonight</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                // In a real implementation, you would initialize charts here
+                break;
+                
+            case 'users':
+                mainContent.innerHTML = `
+                    <h2>User Management</h2>
+                    <div style="margin-bottom: 20px;">
+                        <button class="btn btn-primary">Add New User</button>
+                        <input type="text" placeholder="Search users..." style="float: right; padding: 5px;">
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Balance</th>
+                                    <th>Status</th>
+                                    <th>Joined</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1001</td>
+                                    <td>john_doe</td>
+                                    <td>john@example.com</td>
+                                    <td>$45.00</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>2023-05-12</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-primary btn-sm">Wallet</button>
+                                        <button class="btn btn-primary btn-sm">Ban</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1002</td>
+                                    <td>jane_smith</td>
+                                    <td>jane@example.com</td>
+                                    <td>$120.50</td>
+                                    <td><span class="badge badge-success">Active</span></td>
+                                    <td>2023-06-01</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-primary btn-sm">Wallet</button>
+                                        <button class="btn btn-primary btn-sm">Ban</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1003</td>
+                                    <td>mike_jones</td>
+                                    <td>mike@example.com</td>
+                                    <td>$0.00</td>
+                                    <td><span class="badge badge-warning">Inactive</span></td>
+                                    <td>2023-07-15</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-primary btn-sm">Wallet</button>
+                                        <button class="btn btn-primary btn-sm">Ban</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1004</td>
+                                    <td>sara_williams</td>
+                                    <td>sara@example.com</td>
+                                    <td>$78.25</td>
+                                    <td><span class="badge badge-danger">Banned</span></td>
+                                    <td>2023-04-22</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Edit</button>
+                                        <button class="btn btn-primary btn-sm">Wallet</button>
+                                        <button class="btn btn-primary btn-sm">Unban</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <h3>User Activity Logs</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Activity</th>
+                                        <th>IP Address</th>
+                                        <th>Country</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>john_doe</td>
+                                        <td>Logged in</td>
+                                        <td>192.168.1.1</td>
+                                        <td>US</td>
+                                        <td>2023-08-10 14:30</td>
+                                    </tr>
+                                    <tr>
+                                        <td>jane_smith</td>
+                                        <td>Placed order #4567</td>
+                                        <td>203.145.67.89</td>
+                                        <td>UK</td>
+                                        <td>2023-08-10 13:45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>mike_jones</td>
+                                        <td>Wallet recharge $50</td>
+                                        <td>156.78.90.123</td>
+                                        <td>CA</td>
+                                        <td>2023-08-10 12:15</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                break;
+                
+            case 'orders':
+                mainContent.innerHTML = `
+                    <h2>Order Management</h2>
+                    <div style="margin-bottom: 20px;">
+                        <input type="text" placeholder="Search order ID, user..." style="padding: 5px; width: 300px;">
+                        <select style="padding: 5px; margin-left: 10px;">
+                            <option>All Status</option>
+                            <option>Pending</option>
+                            <option>Processing</option>
+                            <option>Completed</option>
+                            <option>Canceled</option>
+                            <option>Refunded</option>
+                        </select>
+                        <button class="btn btn-primary" style="float: right;">Bulk Actions</button>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>User</th>
+                                    <th>Service</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#7890</td>
+                                    <td>john_doe</td>
+                                    <td>Instagram Likes</td>
+                                    <td>$2.50</td>
+                                    <td><span class="badge badge-success">Completed</span></td>
+                                    <td>2023-08-10 10:30</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">View</button>
+                                        <button class="btn btn-primary btn-sm">Refund</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#7889</td>
+                                    <td>jane_smith</td>
+                                    <td>YouTube Views</td>
+                                    <td>$12.00</td>
+                                    <td><span class="badge badge-warning">Processing</span></td>
+                                    <td>2023-08-10 09:45</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">View</button>
+                                        <button class="btn btn-primary btn-sm">Complete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#7888</td>
+                                    <td>mike_jones</td>
+                                    <td>Twitter Followers</td>
+                                    <td>$5.50</td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    <td>2023-08-10 08:15</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">View</button>
+                                        <button class="btn btn-primary btn-sm">Process</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#7887</td>
+                                    <td>sara_williams</td>
+                                    <td>Facebook Page Likes</td>
+                                    <td>$8.00</td>
+                                    <td><span class="badge badge-danger">Canceled</span></td>
+                                    <td>2023-08-09 22:30</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">View</button>
+                                        <button class="btn btn-primary btn-sm">Refund</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <h3>Refill/Drip Feed Logs</h3>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Refill #</th>
+                                        <th>Status</th>
+                                        <th>Start Count</th>
+                                        <th>Remains</th>
+                                        <th>Last Update</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#7890</td>
+                                        <td>1</td>
+                                        <td><span class="badge badge-success">Completed</span></td>
+                                        <td>1000</td>
+                                        <td>0</td>
+                                        <td>2023-08-10 11:30</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#7890</td>
+                                        <td>2</td>
+                                        <td><span class="badge badge-success">Completed</span></td>
+                                        <td>500</td>
+                                        <td>0</td>
+                                        <td>2023-08-10 12:45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#7889</td>
+                                        <td>1</td>
+                                        <td><span class="badge badge-warning">In Progress</span></td>
+                                        <td>5000</td>
+                                        <td>1250</td>
+                                        <td>2023-08-10 13:15</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                break;
+                
+            // Additional pages would follow the same pattern
+            case 'services':
+                mainContent.innerHTML = `<h2>Services & Category Management</h2><p>Service management content goes here...</p>`;
+                break;
+            case 'api':
+                mainContent.innerHTML = `<h2>API System</h2><p>API management content goes here...</p>`;
+                break;
+            case 'payments':
+                mainContent.innerHTML = `<h2>Payment Management</h2><p>Payment management content goes here...</p>`;
+                break;
+            case 'admins':
+                mainContent.innerHTML = `<h2>Admin Roles & Sub-Admin Management</h2><p>Admin management content goes here...</p>`;
+                break;
+            case 'resellers':
+                mainContent.innerHTML = `<h2>Reseller & API System</h2><p>Reseller management content goes here...</p>`;
+                break;
+            case 'support':
+                mainContent.innerHTML = `<h2>Support System</h2><p>Support ticket content goes here...</p>`;
+                break;
+            case 'notifications':
+                mainContent.innerHTML = `<h2>Notification System</h2><p>Notification settings content goes here...</p>`;
+                break;
+            case 'analytics':
+                mainContent.innerHTML = `<h2>Analytics & Reports</h2><p>Analytics content goes here...</p>`;
+                break;
+            case 'security':
+                mainContent.innerHTML = `<h2>Security & Compliance</h2><p>Security settings content goes here...</p>`;
+                break;
+            case 'settings':
+                mainContent.innerHTML = `<h2>CMS & Settings Panel</h2><p>Website settings content goes here...</p>`;
+                break;
+            case 'extras':
+                mainContent.innerHTML = `<h2>Extra Add-ons</h2><p>Extra features content goes here...</p>`;
+                break;
+            default:
+                mainContent.innerHTML = `<h2>Dashboard</h2><p>Default content goes here...</p>`;
+        }
+    }
+
+    // Toggle admin panel
+    adminPanelBtn.addEventListener('click', function() {
+        adminPanel.style.display = 'block';
+        if (!isAdminLoggedIn) {
+            showLoginForm();
+        }
+    });
+
+    // Close admin panel
+    closeAdminBtn.addEventListener('click', function() {
+        adminPanel.style.display = 'none';
+    });
+
+    // Close when clicking outside
+    adminPanel.addEventListener('click', function(e) {
+        if (e.target === adminPanel) {
+            adminPanel.style.display = 'none';
+        }
+    });
+});
+</script>
 
                 
 <script>
