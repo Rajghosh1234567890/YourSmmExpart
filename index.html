@@ -160,26 +160,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     const darkMode = localStorage.getItem('darkMode');
     
-    // Function to set appropriate icon size
+    // Set initial icon based on device and theme
     function setIcon() {
         const isMobile = window.innerWidth <= 768;
+        const iconSize = isMobile ? '1.8rem' : '2.2rem';
+        
         if (body.getAttribute('data-theme') === 'dark') {
-            darkModeToggle.innerHTML = isMobile ? 
-                '<i class="fas fa-sun" style="font-size:1rem"></i>' : 
-                '<i class="fas fa-sun" style="font-size:1.3rem"></i>';
+            darkModeToggle.innerHTML = `<i class="fas fa-sun" style="font-size:${iconSize}; color: var(--text-color);"></i>`;
         } else {
-            darkModeToggle.innerHTML = isMobile ? 
-                '<i class="fas fa-moon" style="font-size:1rem"></i>' : 
-                '<i class="fas fa-moon" style="font-size:1.3rem"></i>';
+            darkModeToggle.innerHTML = `<i class="fas fa-moon" style="font-size:${iconSize}; color: var(--text-color);"></i>`;
         }
     }
-    
-    // Initial setup
+
+    // Initialize
     if (darkMode === 'enabled') {
         body.setAttribute('data-theme', 'dark');
     }
     setIcon();
-    
+
     // Toggle functionality
     darkModeToggle.addEventListener('click', function() {
         if (body.getAttribute('data-theme') === 'dark') {
@@ -190,9 +188,19 @@ document.addEventListener('DOMContentLoaded', function() {
         setIcon();
         localStorage.setItem('darkMode', body.getAttribute('data-theme') === 'dark' ? 'enabled' : null);
     });
-    
+
     // Update on resize
     window.addEventListener('resize', setIcon);
+    
+    // Style the toggle container (minimal required styling)
+    darkModeToggle.style.position = 'fixed';
+    darkModeToggle.style.bottom = '20px';
+    darkModeToggle.style.left = '20px';
+    darkModeToggle.style.zIndex = '9999';
+    darkModeToggle.style.cursor = 'pointer';
+    darkModeToggle.style.backgroundColor = 'transparent';
+    darkModeToggle.style.border = 'none';
+    darkModeToggle.style.outline = 'none';
 });
         
          
