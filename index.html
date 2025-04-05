@@ -155,30 +155,37 @@
             font-size: 1.1rem;
         }
         
-      // Update your dark mode toggle function
-darkModeToggle.addEventListener('click', () => {
-    const darkMode = localStorage.getItem('darkMode');
-    
-    if (darkMode !== 'enabled') {
-        body.setAttribute('data-theme', 'dark');
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon in dark mode
-        localStorage.setItem('darkMode', 'enabled');
-    } else {
-        body.removeAttribute('data-theme');
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon in light mode
-        localStorage.setItem('darkMode', null);
-    }
-});
+    /* Dark Mode Toggle - Bottom Left Corner */
+.dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: white;
+    border: 2px solid #f1f1f1;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    color: #333;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
 
-// Initialize icon on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const darkMode = localStorage.getItem('darkMode');
-    if (darkMode === 'enabled') {
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    }
-});
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .dark-mode-toggle {
+    background: #2d3436;
+    border-color: #444;
+    color: white;
+}
         
         /* Header Styles */
         header {
