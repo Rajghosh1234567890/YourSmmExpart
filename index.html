@@ -155,12 +155,12 @@
             font-size: 1.1rem;
         }
         
-// Initialize
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     const darkMode = localStorage.getItem('darkMode');
     
+    // Set initial icon (moon for light, sun for dark)
     if (darkMode === 'enabled') {
         body.setAttribute('data-theme', 'dark');
         darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
@@ -181,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+        
         
         /* Header Styles */
         header {
