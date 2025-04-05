@@ -155,49 +155,32 @@
             font-size: 1.1rem;
         }
         
-/* WhatsApp-style Dark Mode Toggle Button */
-.dark-mode-toggle {
-    position: fixed;
-    bottom: 25px;
-    left: 25px;
-    z-index: 1000;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #075E54; /* WhatsApp green color */
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    animation: pulse 2s infinite;
-}
-
-.dark-mode-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .dark-mode-toggle {
-    background: #128C7E; /* Darker WhatsApp teal */
-}
-
-/* WhatsApp-like pulse animation */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(7, 94, 84, 0.7);
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const darkMode = localStorage.getItem('darkMode');
+    
+    // Set initial icon (moon for light, sun for dark)
+    if (darkMode === 'enabled') {
+        body.setAttribute('data-theme', 'dark');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     }
-    70% {
-        box-shadow: 0 0 0 12px rgba(7, 94, 84, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(7, 94, 84, 0);
-    }
-}
+    
+    // Toggle functionality
+    darkModeToggle.addEventListener('click', function() {
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('darkMode', null);
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('darkMode', 'enabled');
+        }
+    });
+});
         
         /* Header Styles */
         header {
