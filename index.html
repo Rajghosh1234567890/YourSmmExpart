@@ -1358,7 +1358,330 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
     </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Fund Payment</title>
+    <style>
+        .ad-fund-container {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .ad-fund-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .amount-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .amount-option {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .amount-option:hover {
+            background-color: #f0f0f0;
+        }
+        .amount-option.selected {
+            background-color: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        .custom-amount {
+            margin-bottom: 20px;
+        }
+        .custom-amount input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .pay-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .pay-button:hover {
+            background-color: #45a049;
+        }
+        .pay-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .payment-status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            display: none;
+        }
+        .payment-success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            display: block;
+        }
+        .payment-error {
+            background-color: #f2dede;
+            color: #a94442;
+            display: block;
+        }
+        .upi-apps {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .upi-app {
+            text-align: center;
+            cursor: pointer;
+        }
+        .upi-app img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+        .recent-payments {
+            margin-top: 20px;
+        }
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .total-amount {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ad-fund-container">
+        <h2 class="ad-fund-title">Support Us</h2>
+        
+        <div class="amount-options">
+            <div class="amount-option" data-amount="10">₹10</div>
+            <div class="amount-option" data-amount="100">₹100</div>
+            <div class="amount-option" data-amount="500">₹500</div>
+            <div class="amount-option" data-amount="1000">₹1000</div>
+        </div>
+        
+        <div class="custom-amount">
+            <input type="number" id="customAmount" placeholder="Enter custom amount (₹)">
+        </div>
+        
+        <button id="payButton" class="pay-button" disabled>Pay Now</button>
+        
+        <div class="upi-apps">
+            <div class="upi-app" data-app="phonepe">
+                <img src="https://via.placeholder.com/50?text=PhonePe" alt="PhonePe">
+                <div>PhonePe</div>
+            </div>
+            <div class="upi-app" data-app="gpay">
+                <img src="https://via.placeholder.com/50?text=GPay" alt="Google Pay">
+                <div>Google Pay</div>
+            </div>
+            <div class="upi-app" data-app="paytm">
+                <img src="https://via.placeholder.com/50?text=Paytm" alt="Paytm">
+                <div>Paytm</div>
+            </div>
+        </div>
+        
+        <div id="paymentStatus" class="payment-status"></div>
+        
+        <div class="recent-payments">
+            <h3>Recent Payments</h3>
+            <div id="paymentsList"></div>
+        </div>
+        
+        <div class="total-amount">
+            Total Received: <span id="totalAmount">₹0</span>
+        </div>
+    </div>
 
+    <script>
+        // Configuration
+        const upiId = "7029615248-3@ybl";
+        const payments = JSON.parse(localStorage.getItem('adFundPayments')) || [];
+        let selectedAmount = 0;
+        
+        // DOM Elements
+        const amountOptions = document.querySelectorAll('.amount-option');
+        const customAmountInput = document.getElementById('customAmount');
+        const payButton = document.getElementById('payButton');
+        const paymentStatus = document.getElementById('paymentStatus');
+        const paymentsList = document.getElementById('paymentsList');
+        const totalAmountDisplay = document.getElementById('totalAmount');
+        const upiApps = document.querySelectorAll('.upi-app');
+        
+        // Initialize
+        updatePaymentsList();
+        updateTotalAmount();
+        
+        // Event Listeners
+        amountOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                amountOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                customAmountInput.value = '';
+                selectedAmount = parseInt(option.dataset.amount);
+                payButton.disabled = false;
+            });
+        });
+        
+        customAmountInput.addEventListener('input', () => {
+            amountOptions.forEach(opt => opt.classList.remove('selected'));
+            selectedAmount = parseInt(customAmountInput.value) || 0;
+            payButton.disabled = selectedAmount <= 0;
+        });
+        
+        payButton.addEventListener('click', initiatePayment);
+        
+        upiApps.forEach(app => {
+            app.addEventListener('click', () => {
+                if (selectedAmount <= 0) {
+                    showStatus('Please select an amount first', 'error');
+                    return;
+                }
+                initiatePayment(app.dataset.app);
+            });
+        });
+        
+        // Functions
+        function initiatePayment(app = null) {
+            if (selectedAmount <= 0) {
+                showStatus('Please select a valid amount', 'error');
+                return;
+            }
+            
+            const paymentId = 'PAY' + Date.now();
+            const paymentData = {
+                id: paymentId,
+                amount: selectedAmount,
+                timestamp: new Date().toISOString(),
+                status: 'pending'
+            };
+            
+            // In a real implementation, you would send this to your server
+            payments.unshift(paymentData);
+            localStorage.setItem('adFundPayments', JSON.stringify(payments));
+            
+            // Redirect to UPI app
+            const upiLinks = {
+                phonepe: `phonepe://upi/pay?pa=${upiId}&pn=RecipientName&am=${selectedAmount}&cu=INR&tn=AdFundPayment`,
+                gpay: `tez://upi/pay?pa=${upiId}&pn=RecipientName&am=${selectedAmount}&cu=INR&tn=AdFundPayment`,
+                paytm: `paytmmp://upi/pay?pa=${upiId}&pn=RecipientName&am=${selectedAmount}&cu=INR&tn=AdFundPayment`
+            };
+            
+            const defaultLink = `upi://pay?pa=${upiId}&pn=RecipientName&am=${selectedAmount}&cu=INR&tn=AdFundPayment`;
+            
+            // Try to open specific app if selected, otherwise default UPI
+            if (app && upiLinks[app]) {
+                window.location.href = upiLinks[app];
+            } else {
+                window.location.href = defaultLink;
+            }
+            
+            // Simulate payment verification (in real implementation, use server-side verification)
+            setTimeout(() => {
+                verifyPayment(paymentId);
+            }, 3000);
+        }
+        
+        function verifyPayment(paymentId) {
+            // In a real implementation, you would check with your server
+            // For demo, we'll assume payment was successful
+            const paymentIndex = payments.findIndex(p => p.id === paymentId);
+            if (paymentIndex !== -1) {
+                payments[paymentIndex].status = 'completed';
+                localStorage.setItem('adFundPayments', JSON.stringify(payments));
+                
+                showStatus(`Payment successful: ₹${payments[paymentIndex].amount}`, 'success');
+                updatePaymentsList();
+                updateTotalAmount();
+                
+                // In a real implementation, you would send this to your admin panel
+                console.log(`Admin Notification: Payment of ₹${payments[paymentIndex].amount} received`);
+            }
+        }
+        
+        function showStatus(message, type) {
+            paymentStatus.textContent = message;
+            paymentStatus.className = 'payment-status';
+            paymentStatus.classList.add(`payment-${type}`);
+            setTimeout(() => {
+                paymentStatus.style.display = 'none';
+            }, 5000);
+        }
+        
+        function updatePaymentsList() {
+            paymentsList.innerHTML = '';
+            const recentPayments = payments.filter(p => p.status === 'completed').slice(0, 5);
+            
+            if (recentPayments.length === 0) {
+                paymentsList.innerHTML = '<p>No recent payments</p>';
+                return;
+            }
+            
+            recentPayments.forEach(payment => {
+                const paymentItem = document.createElement('div');
+                paymentItem.className = 'payment-item';
+                
+                const amount = document.createElement('span');
+                amount.textContent = `₹${payment.amount}`;
+                
+                const time = document.createElement('span');
+                time.textContent = new Date(payment.timestamp).toLocaleTimeString();
+                
+                paymentItem.appendChild(amount);
+                paymentItem.appendChild(time);
+                paymentsList.appendChild(paymentItem);
+            });
+        }
+        
+        function updateTotalAmount() {
+            const total = payments
+                .filter(p => p.status === 'completed')
+                .reduce((sum, payment) => sum + payment.amount, 0);
+            totalAmountDisplay.textContent = `₹${total}`;
+        }
+        
+        // Simulate checking for payments when page loads
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('payment_success')) {
+                const amount = urlParams.get('amount');
+                showStatus(`Payment successful: ₹${amount}`, 'success');
+                
+                // Update URL without reload
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        });
+    </script>
+</body>
+</html>
     <!-- Features Section -->
     <section class="features">
         <div class="container">
