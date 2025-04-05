@@ -155,32 +155,46 @@
             font-size: 1.1rem;
         }
         
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     const darkMode = localStorage.getItem('darkMode');
     
-    // Set initial icon
+    // Function to set appropriate icon size
+    function setIcon() {
+        const isMobile = window.innerWidth <= 768;
+        if (body.getAttribute('data-theme') === 'dark') {
+            darkModeToggle.innerHTML = isMobile ? 
+                '<i class="fas fa-sun" style="font-size:1rem"></i>' : 
+                '<i class="fas fa-sun" style="font-size:1.3rem"></i>';
+        } else {
+            darkModeToggle.innerHTML = isMobile ? 
+                '<i class="fas fa-moon" style="font-size:1rem"></i>' : 
+                '<i class="fas fa-moon" style="font-size:1.3rem"></i>';
+        }
+    }
+    
+    // Initial setup
     if (darkMode === 'enabled') {
         body.setAttribute('data-theme', 'dark');
-        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     }
+    setIcon();
     
     // Toggle functionality
     darkModeToggle.addEventListener('click', function() {
         if (body.getAttribute('data-theme') === 'dark') {
             body.removeAttribute('data-theme');
-            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            localStorage.setItem('darkMode', null);
         } else {
             body.setAttribute('data-theme', 'dark');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            localStorage.setItem('darkMode', 'enabled');
         }
+        setIcon();
+        localStorage.setItem('darkMode', body.getAttribute('data-theme') === 'dark' ? 'enabled' : null);
     });
+    
+    // Update on resize
+    window.addEventListener('resize', setIcon);
 });
+        
          
         /* Header Styles */
         header {
