@@ -155,71 +155,33 @@
             font-size: 1.1rem;
         }
         
-   /* WhatsApp-style Dark Mode Toggle Button (Mobile Optimized) */
-.dark-mode-toggle {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 9999;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #075E54;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    border: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* Mobile-specific optimizations */
-@media (max-width: 768px) {
-    .dark-mode-toggle {
-        bottom: 15px;
-        left: 15px;
-        width: 48px;
-        height: 48px;
-        font-size: 1.1rem;
-    }
-}
-
-.dark-mode-toggle:active {
-    transform: scale(0.95);
-}
-
-.dark-mode-toggle:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .dark-mode-toggle {
-    background: #128C7E;
-}
-
-/* Pulse animation - disabled on mobile for performance */
-@media (hover: hover) and (pointer: fine) {
-    .dark-mode-toggle {
-        animation: pulse 2s infinite;
+ document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const darkMode = localStorage.getItem('darkMode');
+    
+    // Set initial icon
+    if (darkMode === 'enabled') {
+        body.setAttribute('data-theme', 'dark');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     }
     
-    @keyframes pulse {
-        0% {
-            box-shadow: 0 0 0 0 rgba(7, 94, 84, 0.4);
+    // Toggle functionality
+    darkModeToggle.addEventListener('click', function() {
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('darkMode', null);
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('darkMode', 'enabled');
         }
-        70% {
-            box-shadow: 0 0 0 10px rgba(7, 94, 84, 0);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(7, 94, 84, 0);
-        }
-    }
-} 
+    });
+});
+         
         /* Header Styles */
         header {
             background-color: var(--primary);
