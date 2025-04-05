@@ -155,37 +155,39 @@
             font-size: 1.1rem;
         }
         
-    /* Dark Mode Toggle - Bottom Left Corner */
+ /* Dark Mode Toggle - Bottom Left Position */
 .dark-mode-toggle {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 20px;      /* Changed to bottom */
+    left: 20px;        /* Keep left position */
     z-index: 1001;
-    background: white;
-    border: 2px solid #f1f1f1;
-    width: 50px;
+    background: white; /* White background */
+    border: none;
+    width: 50px;       /* Slightly smaller */
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-    color: #333;
-    font-size: 1.2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #333;       /* Dark icon color */
+    font-size: 1.1rem;
     transition: all 0.3s ease;
 }
 
-.dark-mode-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+/* Dark mode styles */
+[data-theme="dark"] .dark-mode-toggle {
+    background: #333;  /* Dark background */
+    color: white;      /* White icon */
 }
 
-[data-theme="dark"] .dark-mode-toggle {
-    background: #2d3436;
-    border-color: #444;
-    color: white;
+/* Hover effects */
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+        
         
         /* Header Styles */
         header {
