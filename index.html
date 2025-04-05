@@ -1365,320 +1365,1087 @@ document.addEventListener('DOMContentLoaded', function() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ad Fund Payment</title>
     <style>
-        .ad-fund-container {
-            font-family: Arial, sans-serif;
-            max-width: 400px;
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #f5f7ff;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --white: #ffffff;
+            --black: #000000;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .ad-fund-title {
-            text-align: center;
-            color: #333;
+
+        .ad-fund-section {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: var(--transition);
+        }
+
+        .ad-fund-section:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
             margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
         }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
+        }
+
         .amount-options {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             gap: 10px;
-            margin-bottom: 20px;
+            margin-top: 10px;
         }
+
         .amount-option {
-            padding: 10px;
+            background-color: var(--light-color);
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
+            padding: 10px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
+
         .amount-option:hover {
-            background-color: #f0f0f0;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
         }
+
         .amount-option.selected {
-            background-color: #4CAF50;
-            color: white;
-            border-color: #4CAF50;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
         }
+
         .custom-amount {
-            margin-bottom: 20px;
-        }
-        .custom-amount input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .pay-button {
-            width: 100%;
-            padding: 12px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .pay-button:hover {
-            background-color: #45a049;
-        }
-        .pay-button:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-        }
-        .payment-status {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
-            text-align: center;
             display: none;
         }
-        .payment-success {
-            background-color: #dff0d8;
-            color: #3c763d;
+
+        .custom-amount.show {
             display: block;
         }
-        .payment-error {
-            background-color: #f2dede;
-            color: #a94442;
-            display: block;
+
+        .pay-now-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            margin-top: 10px;
         }
+
+        .pay-now-btn:hover {
+            background-color: #3a5bef;
+            transform: translateY(-2px);
+        }
+
+        .pay-now-btn:active {
+            transform: translateY(0);
+        }
+
         .upi-apps {
             display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
+
         .upi-app {
-            text-align: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--box-shadow);
             cursor: pointer;
+            transition: var(--transition);
         }
+
+        .upi-app:hover {
+            transform: translateY(-5px);
+        }
+
         .upi-app img {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
-        .recent-payments {
+
+        .payment-status {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            border-radius: var(--border-radius);
             margin-top: 20px;
         }
+
+        .payment-status.success {
+            display: block;
+            background-color: rgba(40, 167, 69, 0.1);
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        .payment-status.failure {
+            display: block;
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+        }
+
+        .status-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .status-message {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .status-amount {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .status-details {
+            font-size: 14px;
+            color: inherit;
+            opacity: 0.8;
+        }
+
+        .recent-payments {
+            margin-top: 40px;
+        }
+
+        .payments-list {
+            display: grid;
+            gap: 15px;
+        }
+
         .payment-item {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 15px;
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
+            align-items: center;
+            transition: var(--transition);
         }
-        .total-amount {
-            font-weight: bold;
-            text-align: center;
-            margin-top: 20px;
+
+        .payment-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .payment-amount {
+            font-weight: 700;
+            color: var(--primary-color);
             font-size: 18px;
+        }
+
+        .payment-time {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .upi-id-display {
+            background-color: var(--light-color);
+            border: 1px dashed var(--primary-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .upi-id {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background-color: #3a5bef;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark-color) transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .amount-options {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .upi-apps {
+                gap: 10px;
+            }
+            
+            .upi-app {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .upi-app img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        /* Animation classes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+
+        /* Additional styling for the payment section */
+        .payment-instructions {
+            background-color: var(--light-color);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .instructions-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .instructions-list {
+            padding-left: 20px;
+        }
+
+        .instructions-list li {
+            margin-bottom: 8px;
+        }
+
+        /* Toggle switch for custom amount */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading .spinner {
+            display: inline-block;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .ad-fund-section {
+                padding: 20px 15px;
+            }
+            
+            .section-title {
+                font-size: 20px;
+            }
+            
+            .pay-now-btn {
+                padding: 12px;
+                font-size: 16px;
+            }
+            
+            .upi-id {
+                font-size: 16px;
+            }
+        }
+
+        /* Additional decorative elements */
+        .decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(74, 107, 255, 0.1) 0%, rgba(74, 107, 255, 0) 70%);
+            z-index: -1;
+        }
+
+        .decoration-1 {
+            top: 10%;
+            left: 5%;
+        }
+
+        .decoration-2 {
+            bottom: 15%;
+            right: 5%;
+        }
+
+        /* Payment confirmation modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--danger-color);
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+        }
+
+        .modal-btn-primary:hover {
+            background-color: #3a5bef;
+        }
+
+        .modal-btn-secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: 1px solid #ddd;
+        }
+
+        .modal-btn-secondary:hover {
+            background-color: #e9ecef;
+        }
+
+        /* QR code section */
+        .qr-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px;
+            padding: 10px;
+            background-color: var(--white);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+
+        .qr-instruction {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Payment methods tabs */
+        .payment-methods {
+            margin: 20px 0;
+        }
+
+        .method-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .method-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+            font-weight: 600;
+            color: #666;
+        }
+
+        .method-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .method-content {
+            display: none;
+        }
+
+        .method-content.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="ad-fund-container">
-        <h2 class="ad-fund-title">Support Us</h2>
+    <div class="container">
+        <div class="decoration decoration-1"></div>
+        <div class="decoration decoration-2"></div>
         
-        <div class="amount-options">
-            <div class="amount-option" data-amount="10">₹10</div>
-            <div class="amount-option" data-amount="100">₹100</div>
-            <div class="amount-option" data-amount="500">₹500</div>
-            <div class="amount-option" data-amount="1000">₹1000</div>
-        </div>
-        
-        <div class="custom-amount">
-            <input type="number" id="customAmount" placeholder="Enter custom amount (₹)">
-        </div>
-        
-        <button id="payButton" class="pay-button" disabled>Pay Now</button>
-        
-        <div class="upi-apps">
-            <div class="upi-app" data-app="phonepe">
-                <img src="https://via.placeholder.com/50?text=PhonePe" alt="PhonePe">
-                <div>PhonePe</div>
+        <div class="ad-fund-section slide-up">
+            <h2 class="section-title">Support Us with Ad Fund</h2>
+            
+            <div class="payment-instructions">
+                <h3 class="instructions-title">How it works:</h3>
+                <ul class="instructions-list">
+                    <li>Select or enter the amount you want to contribute</li>
+                    <li>Click "Pay Now" button</li>
+                    <li>You'll be redirected to your preferred UPI app</li>
+                    <li>Complete the payment in the UPI app</li>
+                    <li>Your contribution will be instantly reflected on our site</li>
+                </ul>
             </div>
-            <div class="upi-app" data-app="gpay">
-                <img src="https://via.placeholder.com/50?text=GPay" alt="Google Pay">
-                <div>Google Pay</div>
+            
+            <div class="upi-id-display">
+                <span class="upi-id">7029615248-3@ybl</span>
+                <button class="copy-btn" onclick="copyUpiId()">Copy</button>
             </div>
-            <div class="upi-app" data-app="paytm">
-                <img src="https://via.placeholder.com/50?text=Paytm" alt="Paytm">
-                <div>Paytm</div>
+            
+            <form class="payment-form" id="paymentForm">
+                <div class="form-group">
+                    <label for="amount" class="form-label">Select Amount (₹)</label>
+                    <div class="amount-options">
+                        <div class="amount-option" data-amount="10">₹10</div>
+                        <div class="amount-option" data-amount="50">₹50</div>
+                        <div class="amount-option" data-amount="100">₹100</div>
+                        <div class="amount-option" data-amount="200">₹200</div>
+                        <div class="amount-option" data-amount="500">₹500</div>
+                        <div class="amount-option" data-amount="1000">₹1000</div>
+                    </div>
+                </div>
+                
+                <div class="toggle-container">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="customAmountToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-label">Custom Amount</span>
+                </div>
+                
+                <div class="form-group custom-amount" id="customAmountGroup">
+                    <label for="customAmount" class="form-label">Enter Custom Amount (₹)</label>
+                    <input type="number" id="customAmount" class="form-input" placeholder="e.g. 250" min="1" step="1">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Payment Method</label>
+                    <div class="payment-methods">
+                        <div class="method-tabs">
+                            <div class="method-tab active" data-tab="upi">UPI Apps</div>
+                            <div class="method-tab" data-tab="qr">QR Code</div>
+                        </div>
+                        
+                        <div class="method-content active" data-content="upi">
+                            <div class="upi-apps">
+                                <div class="upi-app" data-app="phonepe">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/PhonePe_Logo.svg/1200px-PhonePe_Logo.svg.png" alt="PhonePe">
+                                </div>
+                                <div class="upi-app" data-app="gpay">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg/1200px-Google_Pay_%28GPay%29_Logo_%282018-2020%29.svg.png" alt="Google Pay">
+                                </div>
+                                <div class="upi-app" data-app="paytm">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Paytm_logo.png/800px-Paytm_logo.png" alt="Paytm">
+                                </div>
+                                <div class="upi-app" data-app="bhim">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/BHIM_Logo.svg/1200px-BHIM_Logo.svg.png" alt="BHIM">
+                                </div>
+                                <div class="upi-app" data-app="amazonpay">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Amazon_Pay_logo.svg/1200px-Amazon_Pay_logo.svg.png" alt="Amazon Pay">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="method-content" data-content="qr">
+                            <div class="qr-section">
+                                <div class="qr-code">
+                                    <!-- QR code would be generated here -->
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=7029615248-3@ybl&pn=AdFund&am=100&cu=INR" alt="UPI QR Code">
+                                </div>
+                                <p class="qr-instruction">Scan this QR code with any UPI app to make payment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="button" class="pay-now-btn" id="payNowBtn">
+                    <span class="btn-text">Pay Now</span>
+                </button>
+            </form>
+            
+            <div class="payment-status hidden" id="paymentStatus">
+                <div class="status-icon">✓</div>
+                <div class="status-message">Payment Successful!</div>
+                <div class="status-amount" id="statusAmount">₹100</div>
+                <div class="status-details">Your contribution has been received. Thank you for your support!</div>
             </div>
         </div>
-        
-        <div id="paymentStatus" class="payment-status"></div>
         
         <div class="recent-payments">
-            <h3>Recent Payments</h3>
-            <div id="paymentsList"></div>
-        </div>
-        
-        <div class="total-amount">
-            Total Received: <span id="totalAmount">₹0</span>
+            <h2 class="section-title">Recent Contributions</h2>
+            <div class="payments-list" id="paymentsList">
+                <!-- Payments will be dynamically added here -->
+                <div class="payment-item">
+                    <span class="payment-amount">₹500</span>
+                    <span class="payment-time">Just now</span>
+                </div>
+                <div class="payment-item">
+                    <span class="payment-amount">₹200</span>
+                    <span class="payment-time">2 minutes ago</span>
+                </div>
+                <div class="payment-item">
+                    <span class="payment-amount">₹1000</span>
+                    <span class="payment-time">10 minutes ago</span>
+                </div>
+            </div>
         </div>
     </div>
-
+    
+    <div class="modal-overlay" id="confirmationModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 class="modal-title">Confirm Payment</h3>
+            <div class="modal-body">
+                <p>You are about to make a payment of <strong id="confirmAmount">₹100</strong> to:</p>
+                <p class="upi-id" style="text-align: center; margin: 15px 0;">7029615248-3@ybl</p>
+                <p>Continue to your UPI app to complete the payment?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" id="cancelPayment">Cancel</button>
+                <button class="modal-btn modal-btn-primary" id="confirmPayment">Continue to Pay</button>
+            </div>
+        </div>
+    </div>
+    
     <script>
-        // Configuration
-        const upiId = "7029615248-3@ybl";
-        const payments = JSON.parse(localStorage.getItem('adFundPayments')) || [];
-        let selectedAmount = 0;
-        
-        // DOM Elements
-        const amountOptions = document.querySelectorAll('.amount-option');
-        const customAmountInput = document.getElementById('customAmount');
-        const payButton = document.getElementById('payButton');
-        const paymentStatus = document.getElementById('paymentStatus');
-        const paymentsList = document.getElementById('paymentsList');
-        const totalAmountDisplay = document.getElementById('totalAmount');
-        const upiApps = document.querySelectorAll('.upi-app');
-        
-        // Initialize
-        updatePaymentsList();
-        updateTotalAmount();
-        
-        // Event Listeners
-        amountOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                amountOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                customAmountInput.value = '';
-                selectedAmount = parseInt(option.dataset.amount);
-                payButton.disabled = false;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const amountOptions = document.querySelectorAll('.amount-option');
+            const customAmountToggle = document.getElementById('customAmountToggle');
+            const customAmountGroup = document.getElementById('customAmountGroup');
+            const customAmountInput = document.getElementById('customAmount');
+            const payNowBtn = document.getElementById('payNowBtn');
+            const paymentForm = document.getElementById('paymentForm');
+            const paymentStatus = document.getElementById('paymentStatus');
+            const paymentsList = document.getElementById('paymentsList');
+            const confirmationModal = document.getElementById('confirmationModal');
+            const confirmAmount = document.getElementById('confirmAmount');
+            const modalClose = document.getElementById('modalClose');
+            const cancelPayment = document.getElementById('cancelPayment');
+            const confirmPayment = document.getElementById('confirmPayment');
+            const statusAmount = document.getElementById('statusAmount');
+            const methodTabs = document.querySelectorAll('.method-tab');
+            const methodContents = document.querySelectorAll('.method-content');
+            const upiApps = document.querySelectorAll('.upi-app');
+            
+            // Variables
+            let selectedAmount = 100;
+            let selectedApp = 'any';
+            
+            // Initialize
+            selectAmountOption(document.querySelector('.amount-option[data-amount="100"]'));
+            
+            // Event Listeners
+            amountOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    selectAmountOption(this);
+                    customAmountToggle.checked = false;
+                    customAmountGroup.classList.remove('show');
+                });
             });
-        });
-        
-        customAmountInput.addEventListener('input', () => {
-            amountOptions.forEach(opt => opt.classList.remove('selected'));
-            selectedAmount = parseInt(customAmountInput.value) || 0;
-            payButton.disabled = selectedAmount <= 0;
-        });
-        
-        payButton.addEventListener('click', initiatePayment);
-        
-        upiApps.forEach(app => {
-            app.addEventListener('click', () => {
-                if (selectedAmount <= 0) {
-                    showStatus('Please select an amount first', 'error');
+            
+            customAmountToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    customAmountGroup.classList.add('show');
+                    document.querySelector('.amount-option.selected')?.classList.remove('selected');
+                    customAmountInput.focus();
+                } else {
+                    customAmountGroup.classList.remove('show');
+                }
+            });
+            
+            customAmountInput.addEventListener('input', function() {
+                if (this.value) {
+                    selectedAmount = parseInt(this.value);
+                    document.querySelector('.amount-option.selected')?.classList.remove('selected');
+                }
+            });
+            
+            payNowBtn.addEventListener('click', function() {
+                if (customAmountToggle.checked && (!customAmountInput.value || parseInt(customAmountInput.value) < 1)) {
+                    customAmountInput.focus();
+                    alert('Please enter a valid amount');
                     return;
                 }
-                initiatePayment(app.dataset.app);
+                
+                confirmAmount.textContent = `₹${selectedAmount}`;
+                showModal();
             });
-        });
-        
-        // Functions
-        function initiatePayment(app = null) {
-            if (selectedAmount <= 0) {
-                showStatus('Please select a valid amount', 'error');
-                return;
+            
+            modalClose.addEventListener('click', hideModal);
+            cancelPayment.addEventListener('click', hideModal);
+            
+            confirmPayment.addEventListener('click', function() {
+                hideModal();
+                processPayment();
+            });
+            
+            methodTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    switchTab(tabName);
+                });
+            });
+            
+            upiApps.forEach(app => {
+                app.addEventListener('click', function() {
+                    selectedApp = this.getAttribute('data-app');
+                    highlightSelectedApp(this);
+                });
+            });
+            
+            // Functions
+            function selectAmountOption(option) {
+                document.querySelector('.amount-option.selected')?.classList.remove('selected');
+                option.classList.add('selected');
+                selectedAmount = parseInt(option.getAttribute('data-amount'));
+                customAmountInput.value = '';
             }
             
-            const paymentId = 'PAY' + Date.now();
-            const paymentData = {
-                id: paymentId,
-                amount: selectedAmount,
-                timestamp: new Date().toISOString(),
-                status: 'pending'
-            };
-            
-            // In a real implementation, you would send this to your server
-            payments.unshift(paymentData);
-            localStorage.setItem('adFundPayments', JSON.stringify(payments));
-            
-            // Redirect to UPI app
-            const upiLinks = {
-                phonepe: `phonepe://upi/pay?pa=${upiId}&pn=RecipientName&am=${selectedAmount}&cu=INR&tn=AdFundPayment`,
-                gpay: `tez://upi/pay?pa=${upiId}&pn=RecipientName&am=${selectedAmount}&cu=INR&tn=AdFundPayment`,
-                paytm: `paytmmp://upi/pay?pa=${upiId}&pn=RecipientName&am=${selectedAmount}&cu=INR&tn=AdFundPayment`
-            };
-            
-            const defaultLink = `upi://pay?pa=${upiId}&pn=RecipientName&am=${selectedAmount}&cu=INR&tn=AdFundPayment`;
-            
-            // Try to open specific app if selected, otherwise default UPI
-            if (app && upiLinks[app]) {
-                window.location.href = upiLinks[app];
-            } else {
-                window.location.href = defaultLink;
+            function showModal() {
+                confirmationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
             
-            // Simulate payment verification (in real implementation, use server-side verification)
-            setTimeout(() => {
-                verifyPayment(paymentId);
-            }, 3000);
-        }
-        
-        function verifyPayment(paymentId) {
-            // In a real implementation, you would check with your server
-            // For demo, we'll assume payment was successful
-            const paymentIndex = payments.findIndex(p => p.id === paymentId);
-            if (paymentIndex !== -1) {
-                payments[paymentIndex].status = 'completed';
-                localStorage.setItem('adFundPayments', JSON.stringify(payments));
+            function hideModal() {
+                confirmationModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            function switchTab(tabName) {
+                methodTabs.forEach(tab => {
+                    if (tab.getAttribute('data-tab') === tabName) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
                 
-                showStatus(`Payment successful: ₹${payments[paymentIndex].amount}`, 'success');
-                updatePaymentsList();
-                updateTotalAmount();
+                methodContents.forEach(content => {
+                    if (content.getAttribute('data-content') === tabName) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            }
+            
+            function highlightSelectedApp(selected) {
+                upiApps.forEach(app => {
+                    if (app === selected) {
+                        app.style.transform = 'scale(1.1)';
+                        app.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                    } else {
+                        app.style.transform = '';
+                        app.style.boxShadow = '';
+                    }
+                });
+            }
+            
+            function processPayment() {
+                // Show loading state
+                const btnText = payNowBtn.querySelector('.btn-text');
+                btnText.textContent = 'Processing...';
+                payNowBtn.classList.add('loading');
+                payNowBtn.disabled = true;
                 
-                // In a real implementation, you would send this to your admin panel
-                console.log(`Admin Notification: Payment of ₹${payments[paymentIndex].amount} received`);
+                // Simulate payment processing
+                setTimeout(() => {
+                    // Reset button
+                    btnText.textContent = 'Pay Now';
+                    payNowBtn.classList.remove('loading');
+                    payNowBtn.disabled = false;
+                    
+                    // Show success message
+                    statusAmount.textContent = `₹${selectedAmount}`;
+                    paymentStatus.classList.remove('hidden');
+                    paymentStatus.classList.add('success');
+                    paymentStatus.style.display = 'block';
+                    
+                    // Add to recent payments
+                    addPaymentToHistory(selectedAmount);
+                    
+                    // Redirect to UPI app
+                    redirectToUpiApp();
+                    
+                    // Hide form
+                    paymentForm.style.display = 'none';
+                    
+                    // Scroll to status
+                    paymentStatus.scrollIntoView({ behavior: 'smooth' });
+                }, 1500);
             }
-        }
-        
-        function showStatus(message, type) {
-            paymentStatus.textContent = message;
-            paymentStatus.className = 'payment-status';
-            paymentStatus.classList.add(`payment-${type}`);
-            setTimeout(() => {
-                paymentStatus.style.display = 'none';
-            }, 5000);
-        }
-        
-        function updatePaymentsList() {
-            paymentsList.innerHTML = '';
-            const recentPayments = payments.filter(p => p.status === 'completed').slice(0, 5);
             
-            if (recentPayments.length === 0) {
-                paymentsList.innerHTML = '<p>No recent payments</p>';
-                return;
-            }
-            
-            recentPayments.forEach(payment => {
+            function addPaymentToHistory(amount) {
+                const now = new Date();
+                const timeString = getTimeAgo(now);
+                
                 const paymentItem = document.createElement('div');
-                paymentItem.className = 'payment-item';
+                paymentItem.className = 'payment-item fade-in';
+                paymentItem.innerHTML = `
+                    <span class="payment-amount">₹${amount}</span>
+                    <span class="payment-time">${timeString}</span>
+                `;
                 
-                const amount = document.createElement('span');
-                amount.textContent = `₹${payment.amount}`;
+                paymentsList.insertBefore(paymentItem, paymentsList.firstChild);
                 
-                const time = document.createElement('span');
-                time.textContent = new Date(payment.timestamp).toLocaleTimeString();
+                // Limit to 10 items
+                if (paymentsList.children.length > 10) {
+                    paymentsList.removeChild(paymentsList.lastChild);
+                }
+            }
+            
+            function getTimeAgo(date) {
+                const now = new Date();
+                const diff = now - date;
+                const seconds = Math.floor(diff / 1000);
                 
-                paymentItem.appendChild(amount);
-                paymentItem.appendChild(time);
-                paymentsList.appendChild(paymentItem);
+                if (seconds < 60) return 'Just now';
+                if (seconds < 3600) return `${Math.floor(seconds / 60)} minutes ago`;
+                if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
+                return `${Math.floor(seconds / 86400)} days ago`;
+            }
+            
+            function redirectToUpiApp() {
+                const upiId = '7029615248-3@ybl';
+                const payeeName = 'AdFund';
+                const transactionNote = 'Ad Fund Contribution';
+                
+                let deepLink = '';
+                
+                switch (selectedApp) {
+                    case 'phonepe':
+                        deepLink = `phonepe://upi/pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+                        break;
+                    case 'gpay':
+                        deepLink = `tez://upi/pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+                        break;
+                    case 'paytm':
+                        deepLink = `paytmmp://upi/pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+                        break;
+                    case 'bhim':
+                        deepLink = `bhim://upi/pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+                        break;
+                    case 'amazonpay':
+                        deepLink = `amazonpay://upi/pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+                        break;
+                    default:
+                        deepLink = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+                }
+                
+                // Open the UPI app
+                window.location.href = deepLink;
+                
+                // Fallback if the app doesn't open
+                setTimeout(() => {
+                    if (!document.hidden) {
+                        window.location.href = `https://upi.link/pay/?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${selectedAmount}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+                    }
+                }, 500);
+            }
+            
+            // Simulate receiving payment notifications (for demo purposes)
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const amounts = [10, 20, 50, 100, 200, 500];
+                    const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+                    addPaymentToHistory(randomAmount);
+                }
+            }, 30000);
+        });
+        
+        function copyUpiId() {
+            const upiId = '7029615248-3@ybl';
+            navigator.clipboard.writeText(upiId).then(() => {
+                alert('UPI ID copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy UPI ID: ', err);
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = upiId;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('UPI ID copied to clipboard!');
             });
         }
-        
-        function updateTotalAmount() {
-            const total = payments
-                .filter(p => p.status === 'completed')
-                .reduce((sum, payment) => sum + payment.amount, 0);
-            totalAmountDisplay.textContent = `₹${total}`;
-        }
-        
-        // Simulate checking for payments when page loads
-        window.addEventListener('load', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('payment_success')) {
-                const amount = urlParams.get('amount');
-                showStatus(`Payment successful: ₹${amount}`, 'success');
-                
-                // Update URL without reload
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }
-        });
     </script>
 </body>
 </html>
