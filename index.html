@@ -155,37 +155,30 @@
             font-size: 1.1rem;
         }
         
-       /* Dark Mode Toggle - Bottom Position & White Color */
-.dark-mode-toggle {
-    position: fixed;
-    bottom: 20px;  /* Changed from top to bottom */
-    left: 20px;
-    z-index: 1001;
-    background: white;  /* Changed to white */
-    border: none;
-    width: 60px;  /* Slightly smaller */
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    color: #2d3436;  /* Dark color for icon */
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-}
+      // Update your dark mode toggle function
+darkModeToggle.addEventListener('click', () => {
+    const darkMode = localStorage.getItem('darkMode');
+    
+    if (darkMode !== 'enabled') {
+        body.setAttribute('data-theme', 'dark');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon in dark mode
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        body.removeAttribute('data-theme');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon in light mode
+        localStorage.setItem('darkMode', null);
+    }
+});
 
-.dark-mode-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Dark mode specific styles */
-[data-theme="dark"] .dark-mode-toggle {
-    background: #2d3436;  /* Dark background in dark mode */
-    color: white;  /* White icon in dark mode */
-}
+// Initialize icon on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'enabled') {
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+});
         
         /* Header Styles */
         header {
