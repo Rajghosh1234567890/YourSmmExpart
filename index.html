@@ -155,38 +155,33 @@
             font-size: 1.1rem;
         }
         
- /* Dark Mode Toggle - Bottom Left Position */
-.dark-mode-toggle {
-    position: fixed;
-    bottom: 20px;      /* Changed to bottom */
-    left: 20px;        /* Keep left position */
-    z-index: 1001;
-    background: white; /* White background */
-    border: none;
-    width: 50px;       /* Slightly smaller */
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    color: #333;       /* Dark icon color */
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-/* Dark mode styles */
-[data-theme="dark"] .dark-mode-toggle {
-    background: #333;  /* Dark background */
-    color: white;      /* White icon */
-}
-
-/* Hover effects */
-.dark-mode-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
+// Initialize button position and icon
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const darkMode = localStorage.getItem('darkMode');
+    
+    // Set initial icon
+    if (darkMode === 'enabled') {
+        body.setAttribute('data-theme', 'dark');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+    
+    // Toggle functionality
+    darkModeToggle.addEventListener('click', function() {
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            localStorage.setItem('darkMode', null);
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            localStorage.setItem('darkMode', 'enabled');
+        }
+    });
+});
         
         
         /* Header Styles */
