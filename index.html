@@ -1072,26 +1072,113 @@ document.addEventListener('DOMContentLoaded', function() {
             <a href="#packages" class="btn">View Packages</a>
         </div>
     </section>
-<!-- Services Tabs -->
+<!-- Services Tabs with Dot Navigation -->
 <section class="services-tabs" id="services-tabs">
-    <div class="container">
-        <div class="tabs-container" id="tabs-scroll-container">
-            <button class="tab-btn active" data-tab="youtube">🔴 YouTube</button>
-            <button class="tab-btn" data-tab="instagram">📸 Instagram</button>
-            <button class="tab-btn" data-tab="facebook">👍 Facebook</button>
-            <button class="tab-btn" data-tab="whatsapp">💬 WhatsApp</button>
-            <button class="tab-btn" data-tab="telegram">✈️ Telegram</button>
-            <button class="tab-btn" data-tab="spotify">🎵 Spotify</button>
-            <button class="tab-btn" data-tab="linkedin">💼 LinkedIn</button>
-            <button class="tab-btn" data-tab="snapchat">👻 Snapchat</button>
-            <button class="tab-btn" data-tab="playstore">📱 Play Store</button>
-            <button class="tab-btn" data-tab="ott">🎬 OTT Platforms</button>
-            <button class="tab-btn" data-tab="threads">🧵 Threads</button>
-            <button class="tab-btn" data-tab="google-traffic">🔍 Google Traffic</button>
-            <button class="tab-btn" data-tab="imdb">⭐ IMDb Ratings</button>
-        </div>
+  <div class="container">
+    <!-- Dot Trigger Button -->
+    <div class="dot-trigger" onclick="toggleTabs()">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
+    
+    <!-- Tabs Container (Hidden by default on mobile) -->
+    <div class="tabs-container" id="tabsContainer">
+      <button class="tab-btn active" data-tab="youtube">🔴 YouTube</button>
+      <button class="tab-btn" data-tab="instagram">📸 Instagram</button>
+      <button class="tab-btn" data-tab="facebook">👍 Facebook</button>
+      <button class="tab-btn" data-tab="whatsapp">💬 WhatsApp</button>
+      <button class="tab-btn" data-tab="telegram">✈️ Telegram</button>
+      <button class="tab-btn" data-tab="spotify">🎵 Spotify</button>
+      <button class="tab-btn" data-tab="linkedin">💼 LinkedIn</button>
+      <button class="tab-btn" data-tab="snapchat">👻 Snapchat</button>
+      <button class="tab-btn" data-tab="playstore">📱 Play Store</button>
+      <button class="tab-btn" data-tab="ott">🎬 OTT</button>
+      <button class="tab-btn" data-tab="threads">🧵 Threads</button>
+      <button class="tab-btn" data-tab="google-traffic">🔍 Traffic</button>
+      <button class="tab-btn" data-tab="imdb">⭐ IMDb</button>
+    </div>
+  </div>
 </section>
+
+<style>
+  /* Dot Navigation Styling */
+  .dot-trigger {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    padding: 10px;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+    margin: 3px 0;
+  }
+
+  /* Tabs Container */
+  .tabs-container {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    gap: 8px;
+    padding: 10px 0;
+  }
+  .tabs-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  /* Tab Buttons */
+  .tab-btn {
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    background: #f0f0f0;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab-btn.active {
+    background: #007bff;
+    color: white;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .dot-trigger {
+      display: block; /* Show dots on mobile */
+    }
+    .tabs-container {
+      display: none; /* Hide by default */
+      position: absolute;
+      background: white;
+      z-index: 100;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 100vw;
+    }
+    .tabs-container.show {
+      display: flex; /* Show when active */
+    }
+  }
+</style>
+
+<script>
+  function toggleTabs() {
+    const tabs = document.getElementById('tabsContainer');
+    tabs.classList.toggle('show');
+    
+    // Close when clicking outside
+    if (tabs.classList.contains('show')) {
+      document.addEventListener('click', function closeTabs(e) {
+        if (!e.target.closest('.services-tabs')) {
+          tabs.classList.remove('show');
+          document.removeEventListener('click', closeTabs);
+        }
+      });
+    }
+  }
+</script>
     
     <!-- Packages Section -->
     <section class="packages" id="packages">
