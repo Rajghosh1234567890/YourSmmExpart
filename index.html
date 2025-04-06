@@ -1534,14 +1534,81 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style> 
      <!-- Services Tabs -->
-    <section class="services-tabs" id="services-tabs">
-        <div class="container">
-            <div class="tabs-container">
-                
-    <button class="tab-btn active" data-tab="youtube"> 🔴 YouTube Promotion</button>
-             </div>
+<section class="services-tabs" id="services-tabs">
+    <div class="container">
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="instagram"> 🔴 Youtube Promotion</button>
+            <!-- Add more buttons here if needed -->
         </div>
-    </section>   
+        
+        <!-- Tab content would go here -->
+    </div>
+</section>
+
+<style>
+    .services-tabs {
+        position: relative;
+        padding: 40px 0;
+    }
+    
+    .tabs-container {
+        display: flex;
+        justify-content: center;
+        position: sticky;
+        top: 20px; /* Adjust this value to control how far from top */
+        z-index: 100;
+    }
+    
+    .tab-btn {
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .tab-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+    
+    .tab-btn:active {
+        transform: translateY(1px);
+    }
+    
+    .tab-btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+        z-index: 1;
+    }
+</style>
+
+<script>
+    // Make button sticky on scroll
+    window.addEventListener('scroll', function() {
+        const tabsContainer = document.querySelector('.tabs-container');
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        
+        // You can adjust the scroll threshold as needed
+        if (scrollPosition > 100) {
+            tabsContainer.style.top = '10px'; // Sticks closer to top when scrolling
+        } else {
+            tabsContainer.style.top = '20px'; // Original position
+        }
+    });
+</script>
     <div class="smm-packages-container">
   <!-- Package 1 -->
   <div class="smm-package premium">
