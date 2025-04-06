@@ -360,20 +360,39 @@ document.addEventListener('DOMContentLoaded', function() {
             color: #e74c3c;
         }
         
-       /* Hero Section - Attractive SMM Panel Design */
+      /* Hero Section - Premium SMM Panel Design */
 .hero {
-    background: linear-gradient(135deg, rgba(103, 58, 183, 0.85), rgba(81, 45, 168, 0.9));
+    background: linear-gradient(135deg, rgba(92, 37, 191, 0.85), rgba(160, 32, 240, 0.8));
     color: white;
     padding: 180px 0 100px;
     text-align: center;
-    background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-image: url('https://i.ibb.co/HDjth7Z9/smm-panel-bg.jpg'); /* Your Image URL */
     background-size: cover;
     background-position: center;
-    background-blend-mode: overlay;
+    background-blend-mode: multiply;
     position: relative;
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6); /* Dark overlay for better text visibility */
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5); /* Dark overlay for better contrast */
 }
-        
+
+/* Optional: Add a glowing CTA button */
+.hero .cta-button {
+    background: #6e3aff;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(110, 58, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.hero .cta-button:hover {
+    background: #5a2ad6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(110, 58, 255, 0.6);
+}
         .hero::before {
             content: '';
             position: absolute;
