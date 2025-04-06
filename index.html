@@ -360,71 +360,18 @@ document.addEventListener('DOMContentLoaded', function() {
             color: #e74c3c;
         }
         
-      /* Hero Section - 4K Optimized SMM Panel */
-.hero {
-    background: 
-        linear-gradient(135deg, rgba(103, 58, 183, 0.88), rgba(81, 45, 168, 0.92)),
-        url('https://i.ibb.co/HDjth7Z9/smm-panel-bg.jpg'); /* Your Image */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Parallax Effect for Premium Feel */
-    color: white;
-    padding: 200px 0 120px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh; /* Full-screen on all devices */
-}
-
-/* Dark Overlay with Subtle Glow */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-}
-
-/* Content Styling (Stays on Top) */
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Ultra HD Glow CTA Button */
-.hero .cta-button {
-    background: linear-gradient(90deg, #8a2be2, #6a5acd);
-    color: white;
-    padding: 15px 35px;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 18px;
-    display: inline-block;
-    margin-top: 30px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 
-        0 5px 15px rgba(138, 43, 226, 0.5),
-        0 0 20px rgba(138, 43, 226, 0.3);
-    transition: all 0.4s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.hero .cta-button:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-        0 10px 25px rgba(138, 43, 226, 0.7),
-        0 0 30px rgba(138, 43, 226, 0.5);
-    background: linear-gradient(90deg, #9b30ff, #7b68ee);
-}
-
+/* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+            background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            position: relative;
+        }        
         .hero::before {
             content: '';
             position: absolute;
