@@ -1092,6 +1092,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h2>YouTube Promotion Packages 🔥 </h2>
                 <div class="packages-grid">
                     <div class="smm-package-card">
+  <div class="smm-package-card">
     <!-- Premium Badge -->
     <div class="popular-badge">BEST VALUE</div>
     
@@ -1150,16 +1151,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
 .smm-package-card {
-    width: 320px;
+    width: 100%;
+    max-width: 320px;
     border-radius: 16px;
     background: #ffffff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    margin: 20px;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    margin: 20px auto;
     transition: all 0.3s ease;
     border: 1px solid #f0f0f0;
+    color: #333; /* सभी टेक्स्ट का रंग गहरा किया */
 }
 
 .smm-package-card:hover {
@@ -1201,16 +1204,19 @@ document.addEventListener('DOMContentLoaded', function() {
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
+    color: white; /* हेडर का टेक्स्ट सफेद रहेगा */
 }
 
 .package-tagline {
     margin: 8px 0 0;
     font-size: 0.85rem;
     opacity: 0.9;
+    color: white; /* टैगलाइन भी सफेद रहेगी */
 }
 
 .package-body {
     padding: 20px;
+    color: #333; /* बॉडी टेक्स्ट का रंग गहरा किया */
 }
 
 .benefits-list {
@@ -1225,6 +1231,7 @@ document.addEventListener('DOMContentLoaded', function() {
     align-items: center;
     gap: 12px;
     border-bottom: 1px dashed #f0f0f0;
+    color: #333; /* लिस्ट आइटम्स का रंग गहरा किया */
 }
 
 .benefits-list li:last-child {
@@ -1242,6 +1249,7 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 15px;
     margin: 20px 0;
     text-align: center;
+    color: #333; /* प्राइस सेक्शन का टेक्स्ट गहरा किया */
 }
 
 .price-comparison {
@@ -1303,11 +1311,11 @@ document.addEventListener('DOMContentLoaded', function() {
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
+    color: white !important; /* बटन का टेक्स्ट सफेद रहेगा */
 }
 
 .whatsapp-btn {
     background: #25D366;
-    color: white;
 }
 
 .whatsapp-btn:hover {
@@ -1317,7 +1325,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .upi-btn {
     background: #6c5ce7;
-    color: white;
 }
 
 .upi-btn:hover {
@@ -1342,6 +1349,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .shield-icon {
     font-size: 1.1rem;
+}
+
+/* मोबाइल रेस्पॉन्सिवनेस के लिए */
+@media (max-width: 480px) {
+    .smm-package-card {
+        width: 90%;
+        margin: 15px auto;
+    }
+    
+    .package-header {
+        padding: 20px 15px;
+    }
+    
+    .benefits-list li {
+        font-size: 0.95rem;
+    }
 }
 </style>
                     
