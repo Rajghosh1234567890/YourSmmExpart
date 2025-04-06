@@ -360,39 +360,71 @@ document.addEventListener('DOMContentLoaded', function() {
             color: #e74c3c;
         }
         
-      /* Hero Section - Premium SMM Panel Design */
+      /* Hero Section - 4K Optimized SMM Panel */
 .hero {
-    background: linear-gradient(135deg, rgba(92, 37, 191, 0.85), rgba(160, 32, 240, 0.8));
-    color: white;
-    padding: 180px 0 100px;
-    text-align: center;
-    background-image: url('https://i.ibb.co/HDjth7Z9/smm-panel-bg.jpg'); /* Your Image URL */
+    background: 
+        linear-gradient(135deg, rgba(103, 58, 183, 0.88), rgba(81, 45, 168, 0.92)),
+        url('https://i.ibb.co/HDjth7Z9/smm-panel-bg.jpg'); /* Your Image */
     background-size: cover;
     background-position: center;
-    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Parallax Effect for Premium Feel */
+    color: white;
+    padding: 200px 0 120px;
+    text-align: center;
     position: relative;
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5); /* Dark overlay for better contrast */
+    overflow: hidden;
+    min-height: 100vh; /* Full-screen on all devices */
 }
 
-/* Optional: Add a glowing CTA button */
+/* Dark Overlay with Subtle Glow */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Content Styling (Stays on Top) */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Ultra HD Glow CTA Button */
 .hero .cta-button {
-    background: #6e3aff;
+    background: linear-gradient(90deg, #8a2be2, #6a5acd);
     color: white;
-    padding: 12px 30px;
-    border-radius: 30px;
+    padding: 15px 35px;
+    border-radius: 50px;
     font-weight: bold;
+    font-size: 18px;
     display: inline-block;
-    margin-top: 20px;
-    text-decoration: none;
-    box-shadow: 0 5px 15px rgba(110, 58, 255, 0.4);
-    transition: all 0.3s ease;
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 
+        0 5px 15px rgba(138, 43, 226, 0.5),
+        0 0 20px rgba(138, 43, 226, 0.3);
+    transition: all 0.4s ease;
+    border: none;
+    cursor: pointer;
 }
 
 .hero .cta-button:hover {
-    background: #5a2ad6;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(110, 58, 255, 0.6);
+    transform: translateY(-5px);
+    box-shadow: 
+        0 10px 25px rgba(138, 43, 226, 0.7),
+        0 0 30px rgba(138, 43, 226, 0.5);
+    background: linear-gradient(90deg, #9b30ff, #7b68ee);
 }
+
         .hero::before {
             content: '';
             position: absolute;
