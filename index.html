@@ -1072,358 +1072,318 @@ document.addEventListener('DOMContentLoaded', function() {
             <a href="#packages" class="btn">View Packages</a>
         </div>
     </section>
-<!-- Hamburger Menu Button -->
-<div class="hamburger-menu-btn" id="hamburgerMenuBtn">
-    <div class="hamburger-line"></div>
-    <div class="hamburger-line"></div>
-    <div class="hamburger-line"></div>
-</div>
-
-<!-- Side Menu -->
-<div class="side-menu" id="sideMenu">
+<!-- HTML -->
+<div class="hamburger-menu-container">
+  <button class="hamburger-btn" id="hamburgerBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  
+  <div class="menu-overlay" id="menuOverlay"></div>
+  
+  <nav class="side-menu" id="sideMenu">
     <div class="menu-header">
-        <span class="menu-title">Menu</span>
-        <span class="close-btn" id="closeMenuBtn">&times;</span>
+      <h3>Menu</h3>
+      <button class="close-btn" id="closeBtn">&times;</button>
     </div>
     
     <ul class="menu-items">
-        <li class="menu-item" onclick="window.location.reload()">
-            <span class="menu-icon">🏠</span> Home
-        </li>
-        
-        <li class="menu-item with-submenu">
-            <div class="submenu-header">
-                <span class="menu-icon">📦</span> Packages
-                <span class="submenu-arrow">▼</span>
-            </div>
-            <ul class="submenu">
-                <li onclick="scrollToSection('youtube-packages')"><span class="submenu-icon">🎬</span> YouTube Packages</li>
-                <li onclick="scrollToSection('instagram-packages')"><span class="submenu-icon">📸</span> Instagram Packages</li>
-                <li onclick="showComingSoon()"><span class="submenu-icon">💻</span> Facebook Packages</li>
-                <li onclick="showComingSoon()"><span class="submenu-icon">✈️</span> Telegram Packages</li>
-                <li onclick="showComingSoon()"><span class="submenu-icon">📺</span> OTT Packages</li>
-                <li onclick="showComingSoon()"><span class="submenu-icon">🖥️</span> Website Packages</li>
-                <li onclick="showComingSoon()"><span class="submenu-icon">🌐</span> Google Packages</li>
-                <li onclick="showComingSoon()"><span class="submenu-icon">🔐</span> Private Packages</li>
-            </ul>
-        </li>
-        
-        <li class="menu-item with-submenu">
-            <div class="submenu-header">
-                <span class="menu-icon">🕑</span> 24×7 Customer Support
-                <span class="submenu-arrow">▼</span>
-            </div>
-            <ul class="submenu">
-                <li onclick="window.open('https://wa.me/917029615248', '_blank')"><span class="submenu-icon">💬</span> WhatsApp Support</li>
-                <li onclick="window.open('https://t.me/918509701076', '_blank')"><span class="submenu-icon">📲</span> Telegram Support</li>
-            </ul>
-        </li>
-        
-        <li class="menu-item with-submenu">
-            <div class="submenu-header">
-                <span class="menu-icon">💱</span> Currency
-                <span class="submenu-arrow">▼</span>
-            </div>
-            <ul class="submenu">
-                <li onclick="changeCurrency('INR')"><span class="submenu-icon">₹</span> INR</li>
-                <li onclick="changeCurrency('USD')"><span class="submenu-icon">$</span> USD</li>
-                <li onclick="changeCurrency('PKR')"><span class="submenu-icon">₨</span> Pakistani</li>
-                <li onclick="changeCurrency('EUR')"><span class="submenu-icon">€</span> EUR</li>
-            </ul>
-        </li>
-        
-        <li class="menu-item" onclick="showComingSoon()">
-            <span class="menu-icon">🔌</span> API
-        </li>
-        
-        <li class="menu-item" onclick="showDisclaimer()">
-            <span class="menu-icon">⚖️</span> Terms & Conditions
-        </li>
-        
-        <li class="menu-item" onclick="showComingSoon()">
-            <span class="menu-icon">💰</span> Add Fund
-        </li>
-        
-        <li class="menu-item" onclick="logout()">
-            <span class="menu-icon">🚪</span> Log Out
-        </li>
+      <li>
+        <a href="/" class="menu-item">
+          <span class="menu-icon">🏠</span> Home
+        </a>
+      </li>
+      
+      <li class="has-submenu">
+        <div class="menu-item">
+          <span class="menu-icon">📦</span> Packages
+          <span class="arrow">›</span>
+        </div>
+        <ul class="submenu">
+          <li><a href="#youtube-packages"><span class="menu-icon">🎬</span> YouTube Packages</a></li>
+          <li><a href="#instagram-packages"><span class="menu-icon">📸</span> Instagram Packages</a></li>
+          <li><a href="#" class="coming-soon"><span class="menu-icon">💻</span> Facebook Packages</a></li>
+          <li><a href="#" class="coming-soon"><span class="menu-icon">✈️</span> Telegram Packages</a></li>
+          <li><a href="#" class="coming-soon"><span class="menu-icon">📺</span> OTT Packages</a></li>
+          <li><a href="#" class="coming-soon"><span class="menu-icon">🖥️</span> Website Packages</a></li>
+          <li><a href="#" class="coming-soon"><span class="menu-icon">🌐</span> Google Packages</a></li>
+          <li><a href="#" class="coming-soon"><span class="menu-icon">🔐</span> Private Packages</a></li>
+        </ul>
+      </li>
+      
+      <li class="has-submenu">
+        <div class="menu-item">
+          <span class="menu-icon">🕑</span> 24×7 Customer Support
+          <span class="arrow">›</span>
+        </div>
+        <ul class="submenu">
+          <li><a href="https://wa.me/917029615248" target="_blank"><span class="menu-icon">💬</span> WhatsApp Support</a></li>
+          <li><a href="https://t.me/918509701076" target="_blank"><span class="menu-icon">📲</span> Telegram Support</a></li>
+        </ul>
+      </li>
+      
+      <li class="has-submenu">
+        <div class="menu-item">
+          <span class="menu-icon">💱</span> Currency
+          <span class="arrow">›</span>
+        </div>
+        <ul class="submenu">
+          <li><a href="#" class="currency-option" data-currency="inr">₹ INR</a></li>
+          <li><a href="#" class="currency-option" data-currency="usd">$ USD</a></li>
+          <li><a href="#" class="currency-option" data-currency="pkr">₨ Pakistani</a></li>
+          <li><a href="#" class="currency-option" data-currency="eur">€ EUR</a></li>
+        </ul>
+      </li>
+      
+      <li><a href="#api" class="menu-item"><span class="menu-icon">🔌</span> API</a></li>
+      <li><a href="#terms" class="menu-item"><span class="menu-icon">⚖️</span> Terms & Conditions</a></li>
+      <li><a href="#" class="menu-item coming-soon"><span class="menu-icon">💰</span> Add Fund</a></li>
+      <li><a href="#logout" class="menu-item"><span class="menu-icon">🚪</span> Log Out</a></li>
     </ul>
+  </nav>
 </div>
 
-<!-- Overlay -->
-<div class="menu-overlay" id="menuOverlay"></div>
-
+<!-- CSS -->
 <style>
-/* Hamburger Menu Button */
-.hamburger-menu-btn {
-    position: fixed;
-    top: 60px;
-    left: 15px;
-    width: 30px;
-    height: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    z-index: 999;
-    transition: all 0.3s ease;
+.hamburger-menu-container {
+  position: fixed;
+  top: 60px;
+  left: 15px;
+  z-index: 1000;
 }
 
-.hamburger-line {
-    width: 100%;
-    height: 3px;
-    background-color: #333;
-    border-radius: 3px;
-    transition: all 0.3s ease;
+.hamburger-btn {
+  width: 40px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+  z-index: 1001;
 }
 
-.hamburger-menu-btn:hover .hamburger-line {
-    background-color: #6d28d9;
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 
-/* Side Menu */
-.side-menu {
-    position: fixed;
-    top: 0;
-    left: -50%;
-    width: 50%;
-    height: 100vh;
-    background-color: #fff;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    transition: all 0.3s ease;
-    overflow-y: auto;
-}
-
-.side-menu.active {
-    left: 0;
-}
-
-.menu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-    color: white;
-}
-
-.menu-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.close-btn {
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.close-btn:hover {
-    transform: scale(1.2);
-}
-
-.menu-items {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu-item {
-    padding: 15px 20px;
-    border-bottom: 1px solid #f0f0f0;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-}
-
-.menu-item:hover {
-    background-color: #f8f8f8;
-    color: #6d28d9;
-}
-
-.menu-icon {
-    margin-right: 10px;
-    font-size: 1.2rem;
-}
-
-.with-submenu .submenu-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.submenu-arrow {
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-}
-
-.submenu {
-    list-style: none;
-    padding-left: 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.submenu.active {
-    max-height: 500px;
-}
-
-.submenu li {
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: all 0.2s ease;
-}
-
-.submenu li:hover {
-    color: #6d28d9;
-}
-
-.submenu-icon {
-    margin-right: 10px;
-    font-size: 1rem;
-}
-
-/* Overlay */
 .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 998;
 }
 
 .menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
-/* Responsive Design */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  max-width: 300px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item, .submenu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.menu-item:hover, .submenu a:hover {
+  background: #f5f5f5;
+  border-left: 3px solid #6a11cb;
+}
+
+.menu-icon {
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.has-submenu .menu-item {
+  justify-content: space-between;
+}
+
+.arrow {
+  font-size: 1.2rem;
+  color: #666;
+  transition: transform 0.3s ease;
+}
+
+.has-submenu.active .arrow {
+  transform: rotate(90deg);
+}
+
+.submenu {
+  list-style: none;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #f9f9f9;
+}
+
+.has-submenu.active .submenu {
+  max-height: 500px;
+}
+
+.submenu a {
+  padding-left: 40px;
+}
+
+.coming-soon {
+  color: #999 !important;
+  cursor: not-allowed;
+}
+
+.coming-soon:hover {
+  background: transparent !important;
+  border-left: 3px solid transparent !important;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .side-menu {
-        width: 80%;
-        left: -80%;
-    }
-    
-    .side-menu.active {
-        left: 0;
-    }
+  .side-menu {
+    width: 80%;
+    left: -80%;
+  }
+  
+  .side-menu.active {
+    left: 0;
+  }
 }
 
 @media (max-width: 480px) {
-    .side-menu {
-        width: 90%;
-        left: -90%;
-    }
-    
-    .side-menu.active {
-        left: 0;
-    }
-    
-    .hamburger-menu-btn {
-        top: 50px;
-    }
+  .hamburger-menu-container {
+    top: 15px;
+    left: 10px;
+  }
+  
+  .side-menu {
+    width: 90%;
+    left: -90%;
+  }
+  
+  .side-menu.active {
+    left: 0;
+  }
 }
 </style>
 
+<!-- JavaScript -->
 <script>
-// DOM Elements
-const hamburgerMenuBtn = document.getElementById('hamburgerMenuBtn');
-const sideMenu = document.getElementById('sideMenu');
-const closeMenuBtn = document.getElementById('closeMenuBtn');
-const menuOverlay = document.getElementById('menuOverlay');
-const submenuHeaders = document.querySelectorAll('.submenu-header');
-
-// Toggle Menu
-function toggleMenu() {
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const closeBtn = document.getElementById('closeBtn');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const sideMenu = document.getElementById('sideMenu');
+  const submenuToggles = document.querySelectorAll('.has-submenu .menu-item');
+  
+  // Toggle menu
+  function toggleMenu() {
     sideMenu.classList.toggle('active');
     menuOverlay.classList.toggle('active');
-    
-    // Toggle hamburger icon animation
-    const hamburgerLines = document.querySelectorAll('.hamburger-line');
-    if (sideMenu.classList.contains('active')) {
-        hamburgerLines[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-        hamburgerLines[1].style.opacity = '0';
-        hamburgerLines[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-    } else {
-        hamburgerLines[0].style.transform = 'none';
-        hamburgerLines[1].style.opacity = '1';
-        hamburgerLines[2].style.transform = 'none';
-    }
-}
-
-// Event Listeners
-hamburgerMenuBtn.addEventListener('click', toggleMenu);
-closeMenuBtn.addEventListener('click', toggleMenu);
-menuOverlay.addEventListener('click', toggleMenu);
-
-// Submenu Toggle
-submenuHeaders.forEach(header => {
-    header.addEventListener('click', function() {
-        const submenu = this.nextElementSibling;
-        const arrow = this.querySelector('.submenu-arrow');
-        
-        submenu.classList.toggle('active');
-        arrow.style.transform = submenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+    document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : '';
+  }
+  
+  hamburgerBtn.addEventListener('click', toggleMenu);
+  closeBtn.addEventListener('click', toggleMenu);
+  menuOverlay.addEventListener('click', toggleMenu);
+  
+  // Toggle submenus
+  submenuToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const parent = this.parentElement;
+      parent.classList.toggle('active');
+      
+      // Close other open submenus
+      document.querySelectorAll('.has-submenu').forEach(item => {
+        if (item !== parent && item.classList.contains('active')) {
+          item.classList.remove('active');
+        }
+      });
     });
-});
-
-// Helper Functions
-function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+  });
+  
+  // Currency switcher functionality
+  const currencyOptions = document.querySelectorAll('.currency-option');
+  currencyOptions.forEach(option => {
+    option.addEventListener('click', function(e) {
+      e.preventDefault();
+      const currency = this.getAttribute('data-currency');
+      // Here you would implement currency switching logic
+      alert(`Currency changed to ${currency.toUpperCase()}. Implement your conversion logic here.`);
+    });
+  });
+  
+  // Close menu when clicking on a link (except submenu toggles)
+  document.querySelectorAll('.menu-items a:not(.has-submenu .menu-item)').forEach(link => {
+    link.addEventListener('click', function() {
+      if (!this.classList.contains('coming-soon')) {
         toggleMenu();
-    } else {
-        alert('Section not found!');
-    }
-}
-
-function showComingSoon() {
-    alert('This feature is coming soon!');
-    toggleMenu();
-}
-
-function showDisclaimer() {
-    alert('Disclaimer page will be shown here.');
-    toggleMenu();
-}
-
-function logout() {
-    // Implement your logout logic here
-    alert('You have been logged out.');
-    toggleMenu();
-}
-
-function changeCurrency(currency) {
-    // Implement currency change logic here
-    alert(`Currency changed to ${currency}. All prices will update accordingly.`);
-    toggleMenu();
-}
-
-// Close menu when clicking outside
-document.addEventListener('click', function(event) {
-    if (!sideMenu.contains(event.target) && !hamburgerMenuBtn.contains(event.target)) {
-        sideMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        
-        // Reset hamburger icon
-        const hamburgerLines = document.querySelectorAll('.hamburger-line');
-        hamburgerLines[0].style.transform = 'none';
-        hamburgerLines[1].style.opacity = '1';
-        hamburgerLines[2].style.transform = 'none';
-    }
+      }
+    });
+  });
 });
 </script>
     
