@@ -1363,43 +1363,6 @@ document.addEventListener('DOMContentLoaded', function() {
   border-left: 3px solid transparent !important;
 }
 
-/* Professional menu bar styling */
-.professional-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: var(--primary-color);
-  color: white;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 990;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.professional-menu .logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.professional-menu .menu-links {
-  display: flex;
-  gap: 20px;
-}
-
-.professional-menu .menu-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  transition: opacity 0.3s;
-}
-
-.professional-menu .menu-links a:hover {
-  opacity: 0.8;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .side-menu {
@@ -1409,10 +1372,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   .side-menu.active {
     left: 0;
-  }
-  
-  .professional-menu .menu-links {
-    display: none;
   }
 }
 
@@ -1570,21 +1529,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-
-// Create professional menu bar (without "Smm Panel" text)
-const professionalMenu = document.createElement('div');
-professionalMenu.className = 'professional-menu';
-professionalMenu.innerHTML = `
-  <div class="logo"></div>
-  <div class="menu-links">
-    <a href="/">Home</a>
-    <a href="#youtube-packages">YouTube</a>
-    <a href="#instagram-packages">Instagram</a>
-    <a href="#api">API</a>
-    <a href="#terms">Terms</a>
-  </div>
-`;
-document.body.prepend(professionalMenu);
 </script>
     
 <!-- Services Tabs -->
