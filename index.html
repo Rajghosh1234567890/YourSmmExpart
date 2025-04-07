@@ -1085,7 +1085,10 @@ document.addEventListener('DOMContentLoaded', function() {
   <nav class="side-menu" id="sideMenu">
     <div class="menu-header">
       <h3>Menu</h3>
-      <button class="close-btn" id="closeBtn">&times;</button>
+      <div class="header-actions">
+        <button class="dark-mode-toggle" id="darkModeToggle">🌙</button>
+        <button class="close-btn" id="closeBtn">&times;</button>
+      </div>
     </div>
     
     <ul class="menu-items">
@@ -1137,15 +1140,37 @@ document.addEventListener('DOMContentLoaded', function() {
       </li>
       
       <li><a href="#api" class="menu-item"><span class="menu-icon">🔌</span> API</a></li>
-      <li><a href="#terms" class="menu-item"><span class="menu-icon">⚖️</span> Terms & Conditions</a></li>
+      <li><a href="#terms" class="menu-item terms-link"><span class="menu-icon">⚖️</span> Terms & Conditions</a></li>
       <li><a href="#" class="menu-item coming-soon"><span class="menu-icon">💰</span> Add Fund</a></li>
-      <li><a href="#logout" class="menu-item"><span class="menu-icon">🚪</span> Log Out</a></li>
+      <li><a href="#" class="menu-item logout-btn"><span class="menu-icon">🚪</span> Log Out</a></li>
     </ul>
   </nav>
 </div>
 
 <!-- CSS -->
 <style>
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --text-color: #333;
+  --bg-color: #fff;
+  --menu-bg: #fff;
+  --menu-item-hover: #f5f5f5;
+  --border-color: #eee;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+  --primary-color: #3b82f6;
+  --primary-dark: #2563eb;
+  --text-color: #f3f4f6;
+  --bg-color: #1f2937;
+  --menu-bg: #111827;
+  --menu-item-hover: #1e3a8a;
+  --border-color: #374151;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
 .hamburger-menu-container {
   position: fixed;
   top: 60px;
@@ -1170,7 +1195,7 @@ document.addEventListener('DOMContentLoaded', function() {
   display: block;
   width: 100%;
   height: 3px;
-  background: #333;
+  background: var(--primary-color);
   border-radius: 3px;
   transition: all 0.3s ease;
 }
@@ -1200,11 +1225,12 @@ document.addEventListener('DOMContentLoaded', function() {
   width: 50%;
   max-width: 300px;
   height: 100%;
-  background: #fff;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  background: var(--menu-bg);
+  box-shadow: 2px 0 10px var(--shadow-color);
   transition: all 0.3s ease;
   z-index: 999;
   overflow-y: auto;
+  color: var(--text-color);
 }
 
 .side-menu.active {
@@ -1216,21 +1242,57 @@ document.addEventListener('DOMContentLoaded', function() {
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .menu-header h3 {
   margin: 0;
   font-size: 1.2rem;
-  color: #333;
+  color: var(--text-color);
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dark-mode-toggle {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background: var(--primary-dark);
 }
 
 .close-btn {
-  background: none;
+  background: var(--primary-color);
+  color: white;
   border: none;
-  font-size: 1.5rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 1.2rem;
   cursor: pointer;
-  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: var(--primary-dark);
 }
 
 .menu-items {
@@ -1243,15 +1305,15 @@ document.addEventListener('DOMContentLoaded', function() {
   display: flex;
   align-items: center;
   padding: 12px 15px;
-  color: #333;
+  color: var(--text-color);
   text-decoration: none;
   transition: all 0.2s ease;
   border-left: 3px solid transparent;
 }
 
 .menu-item:hover, .submenu a:hover {
-  background: #f5f5f5;
-  border-left: 3px solid #6a11cb;
+  background: var(--menu-item-hover);
+  border-left: 3px solid var(--primary-color);
 }
 
 .menu-icon {
@@ -1265,7 +1327,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 .arrow {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--text-color);
+  opacity: 0.7;
   transition: transform 0.3s ease;
 }
 
@@ -1279,7 +1342,7 @@ document.addEventListener('DOMContentLoaded', function() {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  background: #f9f9f9;
+  background: var(--menu-bg);
 }
 
 .has-submenu.active .submenu {
@@ -1300,6 +1363,43 @@ document.addEventListener('DOMContentLoaded', function() {
   border-left: 3px solid transparent !important;
 }
 
+/* Professional menu bar styling */
+.professional-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 990;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.professional-menu .logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.professional-menu .menu-links {
+  display: flex;
+  gap: 20px;
+}
+
+.professional-menu .menu-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.professional-menu .menu-links a:hover {
+  opacity: 0.8;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .side-menu {
@@ -1309,6 +1409,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   .side-menu.active {
     left: 0;
+  }
+  
+  .professional-menu .menu-links {
+    display: none;
   }
 }
 
@@ -1332,11 +1436,16 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Menu elements
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const closeBtn = document.getElementById('closeBtn');
   const menuOverlay = document.getElementById('menuOverlay');
   const sideMenu = document.getElementById('sideMenu');
   const submenuToggles = document.querySelectorAll('.has-submenu .menu-item');
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const logoutBtn = document.querySelector('.logout-btn');
+  const termsLink = document.querySelector('.terms-link');
+  const currencyOptions = document.querySelectorAll('.currency-option');
   
   // Toggle menu
   function toggleMenu() {
@@ -1365,16 +1474,92 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  // Dark mode toggle
+  darkModeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    this.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+  });
+  
+  // Check for saved dark mode preference
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    darkModeToggle.textContent = '☀️';
+  }
+  
+  // Logout functionality
+  logoutBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (confirm('Are you sure you want to log out?')) {
+      // Implement your logout logic here
+      alert('Logout successful!');
+      // window.location.href = '/logout'; // Uncomment this for actual logout
+    }
+  });
+  
+  // Terms and Conditions functionality
+  termsLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    // Show terms modal or redirect
+    alert('Displaying Terms and Conditions. Implement your terms page here.');
+    // window.location.href = '/terms'; // Uncomment this for actual terms page
+  });
+  
   // Currency switcher functionality
-  const currencyOptions = document.querySelectorAll('.currency-option');
   currencyOptions.forEach(option => {
     option.addEventListener('click', function(e) {
       e.preventDefault();
       const currency = this.getAttribute('data-currency');
-      // Here you would implement currency switching logic
-      alert(`Currency changed to ${currency.toUpperCase()}. Implement your conversion logic here.`);
+      
+      // Update all prices on the page (example implementation)
+      document.querySelectorAll('.current-price').forEach(priceElement => {
+        const originalPrice = parseFloat(priceElement.textContent.replace(/[^\d.]/g, ''));
+        let convertedPrice;
+        
+        switch(currency) {
+          case 'inr':
+            convertedPrice = originalPrice;
+            break;
+          case 'usd':
+            convertedPrice = originalPrice * 0.012;
+            break;
+          case 'pkr':
+            convertedPrice = originalPrice * 3.33;
+            break;
+          case 'eur':
+            convertedPrice = originalPrice * 0.011;
+            break;
+          default:
+            convertedPrice = originalPrice;
+        }
+        
+        priceElement.textContent = formatCurrency(convertedPrice, currency) + ' only';
+      });
+      
+      alert(`Currency changed to ${currency.toUpperCase()}. All prices updated.`);
     });
   });
+  
+  // Helper function to format currency
+  function formatCurrency(amount, currency) {
+    const formatter = new Intl.NumberFormat(undefined, {
+      style: 'currency',
+      currency: currency.toUpperCase()
+    });
+    
+    // For currencies not supported by Intl (like PKR)
+    if (currency === 'pkr') {
+      return '₨' + Math.round(amount).toLocaleString();
+    }
+    
+    return formatter.format(amount).replace(/^(\D+)/, (match, p1) => {
+      // Replace currency symbol with our preferred symbols
+      if (currency === 'inr') return '₹';
+      if (currency === 'usd') return '$';
+      if (currency === 'eur') return '€';
+      return p1;
+    });
+  }
   
   // Close menu when clicking on a link (except submenu toggles)
   document.querySelectorAll('.menu-items a:not(.has-submenu .menu-item)').forEach(link => {
@@ -1385,6 +1570,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Create professional menu bar
+const professionalMenu = document.createElement('div');
+professionalMenu.className = 'professional-menu';
+professionalMenu.innerHTML = `
+  <div class="logo">SMM PANEL</div>
+  <div class="menu-links">
+    <a href="/">Home</a>
+    <a href="#youtube-packages">YouTube</a>
+    <a href="#instagram-packages">Instagram</a>
+    <a href="#api">API</a>
+    <a href="#terms">Terms</a>
+  </div>
+`;
+document.body.prepend(professionalMenu);
 </script>
     
 <!-- Services Tabs -->
