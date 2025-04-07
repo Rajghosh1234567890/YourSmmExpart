@@ -1072,477 +1072,359 @@ document.addEventListener('DOMContentLoaded', function() {
             <a href="#packages" class="btn">View Packages</a>
         </div>
     </section>
-<!-- HTML for Hamburger Menu -->
-<div class="hamburger-menu-container">
-  <!-- Hamburger Icon -->
-  <div class="hamburger-icon" id="hamburger-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  
-  <!-- Side Panel -->
-  <div class="side-panel" id="side-panel">
-    <div class="menu-items">
-      <!-- Home -->
-      <div class="menu-item" onclick="window.location.reload()">
-        <span class="menu-icon">🏠</span>
-        <span class="menu-text">Home</span>
-      </div>
-      
-      <!-- Packages Submenu -->
-      <div class="menu-item with-submenu">
-        <span class="menu-icon">📦</span>
-        <span class="menu-text">Packages</span>
-        <span class="submenu-toggle">▶</span>
-        <div class="submenu">
-          <div class="submenu-item" onclick="scrollToSection('youtube-packages')">
-            <span class="submenu-icon">🎬</span>
-            <span>YouTube Packages</span>
-          </div>
-          <div class="submenu-item" onclick="scrollToSection('instagram-packages')">
-            <span class="submenu-icon">📸</span>
-            <span>Instagram Packages</span>
-          </div>
-          <div class="submenu-item" onclick="showComingSoon()">
-            <span class="submenu-icon">💻</span>
-            <span>Facebook Packages</span>
-          </div>
-          <div class="submenu-item" onclick="showComingSoon()">
-            <span class="submenu-icon">✈️</span>
-            <span>Telegram Packages</span>
-          </div>
-          <div class="submenu-item" onclick="showComingSoon()">
-            <span class="submenu-icon">📺</span>
-            <span>OTT Packages</span>
-          </div>
-          <div class="submenu-item" onclick="showComingSoon()">
-            <span class="submenu-icon">🖥️</span>
-            <span>Website Packages</span>
-          </div>
-          <div class="submenu-item" onclick="showComingSoon()">
-            <span class="submenu-icon">🌐</span>
-            <span>Google Packages</span>
-          </div>
-          <div class="submenu-item" onclick="showComingSoon()">
-            <span class="submenu-icon">🔐</span>
-            <span>Private Packages</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Customer Support Submenu -->
-      <div class="menu-item with-submenu">
-        <span class="menu-icon">🕑</span>
-        <span class="menu-text">24×7 Customer Support</span>
-        <span class="submenu-toggle">▶</span>
-        <div class="submenu">
-          <a href="https://wa.me/917029615248" target="_blank" class="submenu-item">
-            <span class="submenu-icon">💬</span>
-            <span>WhatsApp Support</span>
-          </a>
-          <a href="https://t.me/918509701076" target="_blank" class="submenu-item">
-            <span class="submenu-icon">📲</span>
-            <span>Telegram Support</span>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Currency Submenu -->
-      <div class="menu-item with-submenu">
-        <span class="menu-icon">💱</span>
-        <span class="menu-text">Currency</span>
-        <span class="submenu-toggle">▶</span>
-        <div class="submenu">
-          <div class="submenu-item" onclick="changeCurrency('INR')">
-            <span class="submenu-icon">₹</span>
-            <span>INR</span>
-          </div>
-          <div class="submenu-item" onclick="changeCurrency('USD')">
-            <span class="submenu-icon">$</span>
-            <span>USD</span>
-          </div>
-          <div class="submenu-item" onclick="changeCurrency('PKR')">
-            <span class="submenu-icon">₨</span>
-            <span>Pakistani</span>
-          </div>
-          <div class="submenu-item" onclick="changeCurrency('EUR')">
-            <span class="submenu-icon">€</span>
-            <span>EUR</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Other Menu Items -->
-      <div class="menu-item" onclick="showComingSoon()">
-        <span class="menu-icon">🔌</span>
-        <span class="menu-text">API</span>
-      </div>
-      
-      <div class="menu-item" onclick="showDisclaimer()">
-        <span class="menu-icon">⚖️</span>
-        <span class="menu-text">Terms & Conditions</span>
-      </div>
-      
-      <div class="menu-item" onclick="showComingSoon()">
-        <span class="menu-icon">💰</span>
-        <span class="menu-text">Add Fund</span>
-      </div>
-      
-      <div class="menu-item" onclick="logout()">
-        <span class="menu-icon">🚪</span>
-        <span class="menu-text">Log Out</span>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Overlay -->
-  <div class="overlay" id="overlay"></div>
+<!-- Hamburger Menu Button -->
+<div class="hamburger-menu-btn" id="hamburgerMenuBtn">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
 </div>
 
-<!-- Disclaimer Modal -->
-<div class="modal" id="disclaimer-modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('disclaimer-modal')">&times;</span>
-    <h2>Terms & Conditions</h2>
-    <div class="modal-body">
-      <p><strong>Disclaimer:</strong> Our services are intended for personal use and brand promotion only. We do not guarantee any specific results from our services. All services are provided as-is without any warranties.</p>
-      <p>We are not affiliated with any social media platforms. Use our services at your own risk. We reserve the right to refuse service to anyone for any reason.</p>
-      <p>By using our services, you agree to these terms and conditions.</p>
+<!-- Side Menu -->
+<div class="side-menu" id="sideMenu">
+    <div class="menu-header">
+        <span class="menu-title">Menu</span>
+        <span class="close-btn" id="closeMenuBtn">&times;</span>
     </div>
-  </div>
+    
+    <ul class="menu-items">
+        <li class="menu-item" onclick="window.location.reload()">
+            <span class="menu-icon">🏠</span> Home
+        </li>
+        
+        <li class="menu-item with-submenu">
+            <div class="submenu-header">
+                <span class="menu-icon">📦</span> Packages
+                <span class="submenu-arrow">▼</span>
+            </div>
+            <ul class="submenu">
+                <li onclick="scrollToSection('youtube-packages')"><span class="submenu-icon">🎬</span> YouTube Packages</li>
+                <li onclick="scrollToSection('instagram-packages')"><span class="submenu-icon">📸</span> Instagram Packages</li>
+                <li onclick="showComingSoon()"><span class="submenu-icon">💻</span> Facebook Packages</li>
+                <li onclick="showComingSoon()"><span class="submenu-icon">✈️</span> Telegram Packages</li>
+                <li onclick="showComingSoon()"><span class="submenu-icon">📺</span> OTT Packages</li>
+                <li onclick="showComingSoon()"><span class="submenu-icon">🖥️</span> Website Packages</li>
+                <li onclick="showComingSoon()"><span class="submenu-icon">🌐</span> Google Packages</li>
+                <li onclick="showComingSoon()"><span class="submenu-icon">🔐</span> Private Packages</li>
+            </ul>
+        </li>
+        
+        <li class="menu-item with-submenu">
+            <div class="submenu-header">
+                <span class="menu-icon">🕑</span> 24×7 Customer Support
+                <span class="submenu-arrow">▼</span>
+            </div>
+            <ul class="submenu">
+                <li onclick="window.open('https://wa.me/917029615248', '_blank')"><span class="submenu-icon">💬</span> WhatsApp Support</li>
+                <li onclick="window.open('https://t.me/918509701076', '_blank')"><span class="submenu-icon">📲</span> Telegram Support</li>
+            </ul>
+        </li>
+        
+        <li class="menu-item with-submenu">
+            <div class="submenu-header">
+                <span class="menu-icon">💱</span> Currency
+                <span class="submenu-arrow">▼</span>
+            </div>
+            <ul class="submenu">
+                <li onclick="changeCurrency('INR')"><span class="submenu-icon">₹</span> INR</li>
+                <li onclick="changeCurrency('USD')"><span class="submenu-icon">$</span> USD</li>
+                <li onclick="changeCurrency('PKR')"><span class="submenu-icon">₨</span> Pakistani</li>
+                <li onclick="changeCurrency('EUR')"><span class="submenu-icon">€</span> EUR</li>
+            </ul>
+        </li>
+        
+        <li class="menu-item" onclick="showComingSoon()">
+            <span class="menu-icon">🔌</span> API
+        </li>
+        
+        <li class="menu-item" onclick="showDisclaimer()">
+            <span class="menu-icon">⚖️</span> Terms & Conditions
+        </li>
+        
+        <li class="menu-item" onclick="showComingSoon()">
+            <span class="menu-icon">💰</span> Add Fund
+        </li>
+        
+        <li class="menu-item" onclick="logout()">
+            <span class="menu-icon">🚪</span> Log Out
+        </li>
+    </ul>
 </div>
 
-<!-- Coming Soon Modal -->
-<div class="modal" id="coming-soon-modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('coming-soon-modal')">&times;</span>
-    <h2>Coming Soon</h2>
-    <div class="modal-body">
-      <p>This feature is currently under development and will be available soon!</p>
-      <p>Check back later or contact our support for more information.</p>
-    </div>
-  </div>
-</div>
+<!-- Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
 
 <style>
-/* Hamburger Menu Styles */
-.hamburger-menu-container {
-  position: fixed;
-  top: 60px;
-  left: 15px;
-  z-index: 1000;
+/* Hamburger Menu Button */
+.hamburger-menu-btn {
+    position: fixed;
+    top: 60px;
+    left: 15px;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.3s ease;
 }
 
-.hamburger-icon {
-  width: 30px;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  z-index: 1001;
-  position: relative;
+.hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 3px;
+    transition: all 0.3s ease;
 }
 
-.hamburger-icon span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: #333;
-  border-radius: 3px;
-  transition: all 0.3s ease;
+.hamburger-menu-btn:hover .hamburger-line {
+    background-color: #6d28d9;
 }
 
-.hamburger-icon.active span:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
+/* Side Menu */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    overflow-y: auto;
 }
 
-.hamburger-icon.active span:nth-child(2) {
-  opacity: 0;
+.side-menu.active {
+    left: 0;
 }
 
-.hamburger-icon.active span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
 }
 
-.side-panel {
-  position: fixed;
-  top: 0;
-  left: -50%;
-  width: 50%;
-  height: 100vh;
-  background: #fff;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  z-index: 999;
-  overflow-y: auto;
+.menu-title {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
-.side-panel.open {
-  transform: translateX(100%);
+.close-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
 }
 
 .menu-items {
-  padding: 70px 20px 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menu-item {
-  padding: 12px 15px;
-  margin: 5px 0;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.2s ease;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
 }
 
 .menu-item:hover {
-  background: #f5f5f5;
+    background-color: #f8f8f8;
+    color: #6d28d9;
 }
 
 .menu-icon {
-  margin-right: 15px;
-  font-size: 1.2em;
+    margin-right: 10px;
+    font-size: 1.2rem;
 }
 
-.menu-text {
-  flex-grow: 1;
+.with-submenu .submenu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-.with-submenu {
-  position: relative;
-}
-
-.submenu-toggle {
-  transition: transform 0.3s ease;
-}
-
-.with-submenu.active .submenu-toggle {
-  transform: rotate(90deg);
+.submenu-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
 }
 
 .submenu {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  padding-left: 20px;
+    list-style: none;
+    padding-left: 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
 }
 
-.with-submenu.active .submenu {
-  max-height: 1000px;
+.submenu.active {
+    max-height: 500px;
 }
 
-.submenu-item {
-  padding: 10px 15px;
-  margin: 3px 0;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.2s ease;
+.submenu li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
 }
 
-.submenu-item:hover {
-  background: #f0f0f0;
+.submenu li:hover {
+    color: #6d28d9;
 }
 
 .submenu-icon {
-  margin-right: 10px;
-  font-size: 1em;
+    margin-right: 10px;
+    font-size: 1rem;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 998;
+/* Overlay */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
-.overlay.active {
-  opacity: 1;
-  visibility: visible;
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Modal Styles */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1002;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal.active {
-  display: flex;
-}
-
-.modal-content {
-  background: white;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 500px;
-  max-height: 80vh;
-  overflow-y: auto;
-  padding: 20px;
-  position: relative;
-}
-
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.modal-body {
-  padding: 10px 0;
-}
-
-/* Responsive Styles */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .side-panel {
-    width: 80%;
-    left: -80%;
-  }
-  
-  .side-panel.open {
-    transform: translateX(80%);
-  }
-  
-  .menu-items {
-    padding: 60px 15px 15px;
-  }
+    .side-menu {
+        width: 80%;
+        left: -80%;
+    }
+    
+    .side-menu.active {
+        left: 0;
+    }
 }
 
 @media (max-width: 480px) {
-  .hamburger-menu-container {
-    top: 50px;
-    left: 10px;
-  }
-  
-  .side-panel {
-    width: 85%;
-    left: -85%;
-  }
-  
-  .side-panel.open {
-    transform: translateX(85%);
-  }
-  
-  .menu-item {
-    padding: 10px 12px;
-    font-size: 0.9em;
-  }
-  
-  .submenu-item {
-    padding: 8px 12px;
-    font-size: 0.85em;
-  }
+    .side-menu {
+        width: 90%;
+        left: -90%;
+    }
+    
+    .side-menu.active {
+        left: 0;
+    }
+    
+    .hamburger-menu-btn {
+        top: 50px;
+    }
 }
 </style>
 
 <script>
 // DOM Elements
-const hamburgerIcon = document.getElementById('hamburger-icon');
-const sidePanel = document.getElementById('side-panel');
-const overlay = document.getElementById('overlay');
-const submenuToggles = document.querySelectorAll('.with-submenu');
+const hamburgerMenuBtn = document.getElementById('hamburgerMenuBtn');
+const sideMenu = document.getElementById('sideMenu');
+const closeMenuBtn = document.getElementById('closeMenuBtn');
+const menuOverlay = document.getElementById('menuOverlay');
+const submenuHeaders = document.querySelectorAll('.submenu-header');
 
 // Toggle Menu
-hamburgerIcon.addEventListener('click', function() {
-  this.classList.toggle('active');
-  sidePanel.classList.toggle('open');
-  overlay.classList.toggle('active');
-});
-
-// Close menu when clicking overlay
-overlay.addEventListener('click', function() {
-  hamburgerIcon.classList.remove('active');
-  sidePanel.classList.remove('open');
-  this.classList.remove('active');
-});
-
-// Toggle Submenus
-submenuToggles.forEach(item => {
-  item.addEventListener('click', function(e) {
-    // Don't toggle if clicking on a link
-    if (e.target.tagName === 'A') return;
+function toggleMenu() {
+    sideMenu.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
     
-    // Close all other submenus first
-    if (!this.classList.contains('active')) {
-      submenuToggles.forEach(otherItem => {
-        if (otherItem !== this) otherItem.classList.remove('active');
-      });
+    // Toggle hamburger icon animation
+    const hamburgerLines = document.querySelectorAll('.hamburger-line');
+    if (sideMenu.classList.contains('active')) {
+        hamburgerLines[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+        hamburgerLines[1].style.opacity = '0';
+        hamburgerLines[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+    } else {
+        hamburgerLines[0].style.transform = 'none';
+        hamburgerLines[1].style.opacity = '1';
+        hamburgerLines[2].style.transform = 'none';
     }
-    
-    this.classList.toggle('active');
-  });
+}
+
+// Event Listeners
+hamburgerMenuBtn.addEventListener('click', toggleMenu);
+closeMenuBtn.addEventListener('click', toggleMenu);
+menuOverlay.addEventListener('click', toggleMenu);
+
+// Submenu Toggle
+submenuHeaders.forEach(header => {
+    header.addEventListener('click', function() {
+        const submenu = this.nextElementSibling;
+        const arrow = this.querySelector('.submenu-arrow');
+        
+        submenu.classList.toggle('active');
+        arrow.style.transform = submenu.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+    });
 });
 
 // Helper Functions
 function scrollToSection(sectionId) {
-  const section = document.getElementById(sectionId);
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-    closeMenu();
-  }
-}
-
-function closeMenu() {
-  hamburgerIcon.classList.remove('active');
-  sidePanel.classList.remove('open');
-  overlay.classList.remove('active');
-  submenuToggles.forEach(item => item.classList.remove('active'));
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        toggleMenu();
+    } else {
+        alert('Section not found!');
+    }
 }
 
 function showComingSoon() {
-  document.getElementById('coming-soon-modal').classList.add('active');
-  closeMenu();
+    alert('This feature is coming soon!');
+    toggleMenu();
 }
 
 function showDisclaimer() {
-  document.getElementById('disclaimer-modal').classList.add('active');
-  closeMenu();
-}
-
-function closeModal(modalId) {
-  document.getElementById(modalId).classList.remove('active');
+    alert('Disclaimer page will be shown here.');
+    toggleMenu();
 }
 
 function logout() {
-  alert('You have been logged out.');
-  closeMenu();
+    // Implement your logout logic here
+    alert('You have been logged out.');
+    toggleMenu();
 }
-
-// Currency Conversion Rates (example)
-const currencyRates = {
-  'INR': 1,
-  'USD': 0.012,
-  'PKR': 3.34,
-  'EUR': 0.011
-};
 
 function changeCurrency(currency) {
-  // This would update all prices on the page
-  // In a real implementation, you would update the displayed prices
-  console.log(`Currency changed to ${currency}`);
-  alert(`Prices will now be displayed in ${currency}`);
-  closeMenu();
+    // Implement currency change logic here
+    alert(`Currency changed to ${currency}. All prices will update accordingly.`);
+    toggleMenu();
 }
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+    if (!sideMenu.contains(event.target) && !hamburgerMenuBtn.contains(event.target)) {
+        sideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        
+        // Reset hamburger icon
+        const hamburgerLines = document.querySelectorAll('.hamburger-line');
+        hamburgerLines[0].style.transform = 'none';
+        hamburgerLines[1].style.opacity = '1';
+        hamburgerLines[2].style.transform = 'none';
+    }
+});
 </script>
     
 <!-- Services Tabs -->
